@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=7TWhfNJW0erv7qpkdGMHgDJPobJqk2M6Zx33qg_pfrocqsH6thF3kD612hxiOoqm5hRV6RFBi0EYWrYczFxgxV_fmAxVtPPzJd3qlCr3gB8gPs7Uk4Xv80DpF4S5DIxX" charset="UTF-8"></script><script type='text/javascript' nonce='+8tgCLtPx3ALtLtU8G20RQ==' src='https://srv508-files.hstgr.io/gXvJsFWJS6-Iw-xbCsJNEUKsuzZWk6Qxd3RwhuyutPniKCTJbBO2IZcmn5TtCKzQvgemSjESfr7Iuy1Tjjv0tugLtVkW6DhEOGysL6nv_LvdS9npNFrvR9ml3o6b7b813QmuDRe4RJMRCyB5RaRp5y5-z4-kztbkVYUdswXWgOe17dTqbB5D4_ohMg6cHAJQqPZfwv5FtDRmTq1_BPbLTgIqJQcLSaDP5hvD3_udVM9GLzC9YSpXX5lmNFL39IKUUC9XhIdr60cVIIYPFqt6w2unfUGD8TlBocoLb75FhyX4T8YHe1qJBMK-QEb9G1qIlcARTC1ijUB2UTGaxEnta1IuMHD-YK4YMDjGx76yms3pumM-in-CzRvALknfRgXsSRWeTdyegC6dy-ja5rceAvxmpJ_bq1ZhHEmY2cdeHXILvUzcF7UMUecnmUNVNOKGpeIutv4-hZZ0i4oO2Hlfm4E9Qf_7gcFr9F6kUUaCpU2nmIlL5kke7ILq7GDrdY_JjJA3Rw-ZdmZdZu4EazYBm488TQ'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King LuxeCar — Location de Voitures de Luxe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --navy:   #0a1628;
+        --navy2:  #0f1f2e;
+        --gold:   #c9a84c;
+        --gold2:  #e8c97a;
+        --white:  #ffffff;
+        --off:    #f7f8fa;
+        --text:   #1a1a1a;
+        --muted:  #666;
+        --border: #e0e0e0;
+        --accent: #1a56db;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; color: var(--text); background: #fff; line-height: 1.6; overflow-x: hidden; }
+
+    /* LANG */
+    .lang-switcher { position: static; flex-shrink: 0; display: flex; gap: 4px; background: rgba(0,0,0,0.03); padding: 4px; border-radius: 6px; }
+    .lang-btn { padding: 5px 13px; border: 1px solid var(--border); background: transparent; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 0.78rem; letter-spacing: 1px; transition: all .22s; color: var(--text); font-family: 'Jost', sans-serif; }
+    .lang-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .lang-btn:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
+    /* HEADER */
+    header { background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--border); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; position: sticky; top: 0; z-index: 300; box-shadow: 0 1px 12px rgba(0,0,0,0.07); backdrop-filter: blur(12px); }
+    .header-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .logo-icon { color: var(--gold); font-size: 1.5rem; line-height: 1; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; line-height: 1; }
+    .logo-sub { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-top: 2px; }
+    nav { display: flex; gap: 2.5rem; align-items: center; flex: 1; justify-content: center; }
+    nav a { color: var(--text); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 1.8px; text-transform: uppercase; transition: color .25s; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    nav a:hover { color: var(--gold); }
+    nav a:hover::after { width: 100%; }
+    .nav-cta { padding: 8px 22px; background: var(--navy); color: #fff !important; border-radius: 4px; letter-spacing: 1px; transition: background .25s !important; }
+    .nav-cta:hover { background: var(--accent) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* MOBILE MENU */
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; z-index: 310; }
+    .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    /* HERO */
+   .hero{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+    .hero-canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;~
+    object-position:center 35%;
+    object-position:center center;
+    z-index:1;
+}
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(10,22,40,0.82) 0%, rgba(10,22,40,0.35) 55%, rgba(10,22,40,0.65) 100%); z-index: 2; }
+   .hero-content{
+    position:absolute;
+    right:6%;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:3;
+    max-width:650px;
+    text-align:right;
+}
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 4.2rem; font-weight: 300; color: #fff; line-height: 1.1; letter-spacing: 1px; margin-bottom: 1.8rem; }
+    .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    z-index:2;
+}
+    .hero-line { display: block; }
+    .hero-line.italic { font-style: italic; }
+    .hero-desc { font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; line-height: 1.8; font-weight: 300; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: flex-end; }
+    .btn-primary { display: inline-block; padding: 14px 36px; background: var(--gold); color: var(--navy); text-decoration: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; border-radius: 3px; transition: all .3s; }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,168,76,0.35); }
+    .btn-ghost { display: inline-block; padding: 14px 36px; border: 1.5px solid rgba(255,255,255,0.7); color: #fff; text-decoration: none; font-weight: 500; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; border-radius: 3px; transition: all .3s; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+    .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+    /* SEARCH / BOOKING FORM (under hero) */
+    .search-form-wrap { position: relative; max-width: 1280px; margin: -60px auto 0; padding: 0 2rem; z-index: 10; }
+    .search-form { background: var(--navy); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.35); overflow: hidden; }
+    .search-form-header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.6rem; cursor: default; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .search-form-title { display: flex; align-items: center; gap: 12px; color: #fff; font-size: 0.85rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; }
+    .search-form-title i { color: var(--gold); font-size: 1.1rem; }
+    .search-form-body { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 0; }
+    .sf-field { padding: 1.3rem 1.4rem; border-right: 1px solid rgba(255,255,255,0.08); position: relative; min-width: 0; }
+    .sf-field:last-of-type { border-right: none; }
+    .sf-label { display: block; font-size: 0.66rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.6rem; }
+    .sf-input-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .sf-field input, .sf-field select { background: transparent; border: none; color: #fff; font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 500; width: 100%; cursor: pointer; min-width: 0; text-overflow: ellipsis; }
+    .sf-field select { appearance: none; -webkit-appearance: none; }
+    .sf-field input::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.7; cursor: pointer; }
+    .sf-field input:focus, .sf-field select:focus { outline: none; }
+    .sf-field i.sf-icon { color: rgba(255,255,255,0.4); font-size: 0.95rem; flex-shrink: 0; }
+    .sf-field option { background: var(--navy); color: #fff; }
+    .sf-submit { display: flex; align-items: center; justify-content: center; padding: 0; }
+    .btn-search { width: 100%; height: 100%; min-width: 180px; padding: 1.3rem 1.6rem; background: var(--gold); color: var(--navy); border: none; font-family: 'Jost', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: background .25s; }
+    .btn-search:hover { background: var(--gold2); }
+    .sf-error { font-size: 0.7rem; color: #ff8989; margin-top: 4px; display: none; }
+
+    @media (max-width: 1100px) {
+        .search-form-body { grid-template-columns: 1fr 1fr; }
+        .sf-field:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
+        .sf-field:nth-child(even) { border-right: none; }
+        .sf-field { border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .sf-submit { grid-column: 1 / -1; }
+        .btn-search { padding: 1.1rem; }
+    }
+    @media (max-width: 540px) {
+        .search-form-wrap { margin-top: -28px; padding: 0 1rem; }
+        .search-form-body { grid-template-columns: 1fr; }
+        .sf-field { border-right: none; }
+        .sf-field:nth-child(odd) { border-right: none; }
+        .search-form-header { padding: 1rem 1.2rem; }
+        .search-form-title { font-size: 0.75rem; letter-spacing: 1.8px; }
+    }
+
+
+    /* HERO BADGES */
+   .hero-badges-col {
+    position: absolute;
+    left: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+    .hero-badge-item { display: flex; align-items: center; gap: 14px; background: rgba(10,22,40,0.82); border: 1px solid rgba(201,168,76,0.35); border-radius: 8px; padding: 13px 18px; backdrop-filter: blur(10px); min-width: 260px; transition: border-color .25s; }
+    .hero-badge-item:hover { border-color: rgba(201,168,76,0.7); }
+    .hero-badge-icon { color: var(--gold); font-size: 1.15rem; flex-shrink: 0; width: 22px; text-align: center; }
+    .hero-badge-title { font-size: 0.82rem; font-weight: 600; color: #fff; letter-spacing: 0.3px; }
+    .hero-badge-sub { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    @media (max-width: 1100px) { .hero-badges-col { display: none; } }
+
+    /* STATS */
+    .stats-bar { background: var(--navy); padding: 2rem 4rem; display: flex; justify-content: center; gap: 0; }
+    .stat-item { flex: 1; max-width: 200px; text-align: center; padding: 0 2rem; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); font-weight: 300; line-height: 1; }
+    .stat-label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 6px; }
+
+    /* SECTION SHARED */
+    .section-header { margin-bottom: 3.5rem; }
+    .section-eyebrow { font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; line-height: 1.2; color: var(--navy); }
+    .section-title.light { color: #fff; }
+    .title-line { display: block; }
+
+    /* DESTINATIONS */
+    .destinations-section { padding: 7rem 2.5rem; }
+    .destinations-container { max-width: 1300px; margin: 0 auto; }
+    .destinations-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .dest-card { position: relative; height: 520px; border-radius: 6px; overflow: hidden; cursor: pointer; transition: transform .4s, box-shadow .4s; }
+    .dest-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+    .dest-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .dest-card:hover img { transform: scale(1.06); }
+    .dest-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.1) 60%); display: flex; align-items: flex-end; padding: 2.5rem; }
+    .dest-info { color: #fff; width: 100%; }
+    .dest-tag { display: inline-block; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .dest-name { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; line-height: 1; margin-bottom: 0.5rem; }
+    .dest-desc { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+    .dest-arrow { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.2rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: gap .3s; }
+    .dest-card:hover .dest-arrow { gap: 14px; }
+
+    /* EXPERIENCE */
+    .experience-section { padding: 7rem 2.5rem; background: #f7f4ef; color: var(--text); }
+    .experience-container { max-width: 1200px; margin: 0 auto; }
+    .experience-section .section-eyebrow { color: var(--gold); display: flex; align-items: center; gap: 12px; }
+    .experience-section .section-eyebrow::before { content:''; display:inline-block; width:36px; height:1px; background:var(--gold); }
+    .experience-section .section-title { color: var(--navy); }
+    .experience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .exp-card { background: #fff; border: 1px solid #e8e2d8; border-radius: 10px; padding: 2.5rem 2rem; transition: all .3s; }
+    .exp-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); border-color: var(--gold); }
+    .exp-icon { width: 54px; height: 54px; background: #f5ede0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.4rem; }
+    .exp-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 0.8rem; font-weight: 600; color: var(--navy); }
+    .exp-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+
+    /* GOOGLE REVIEWS */
+    .reviews-section { padding: 6rem 2.5rem; background: #fff; overflow: hidden; }
+    .reviews-header { max-width: 1200px; margin: 0 auto 3.5rem; display: flex; align-items: flex-end; justify-content: space-between; }
+    .reviews-google-badge { display: flex; align-items: center; gap: 12px; background: #f7f8fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px 18px; }
+    .reviews-google-badge img { width: 22px; height: 22px; }
+    .reviews-google-badge .g-score { font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+    .reviews-google-badge .g-stars { color: #fbbc04; font-size: 0.9rem; letter-spacing: 1px; }
+    .reviews-google-badge .g-count { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
+    .reviews-track-wrap { overflow: hidden; position: relative; }
+    .reviews-track-wrap::before, .reviews-track-wrap::after { content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; pointer-events:none; }
+    .reviews-track-wrap::before { left:0; background: linear-gradient(to right, #fff, transparent); }
+    .reviews-track-wrap::after { right:0; background: linear-gradient(to left, #fff, transparent); }
+    .reviews-track { display: flex; gap: 1.2rem; width: max-content; animation: reviewsScroll 40s linear infinite; }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes reviewsScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .review-card { background: #fff; border: 1px solid #ede9e0; border-radius: 10px; padding: 1.8rem; width: 300px; flex-shrink: 0; box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: box-shadow .3s; }
+    .review-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
+    .review-top { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+    .review-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: #fff; flex-shrink: 0; }
+    .review-author { font-weight: 600; font-size: 0.88rem; color: var(--navy); }
+    .review-date { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+    .review-stars { color: #fbbc04; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.8rem; }
+    .review-text { font-size: 0.82rem; color: #555; line-height: 1.75; }
+    .review-dest { display: inline-block; margin-top: 0.9rem; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+
+    /* CAR HIGHLIGHT */
+    .car-highlight { display: flex; align-items: stretch; min-height: 520px; background: var(--navy); }
+    .car-highlight-image { flex: 1; background: url('https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&q=80') center/cover no-repeat; min-height: 400px; }
+    .car-highlight-text { width: 440px; flex-shrink: 0; background: #fff; padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; box-shadow: -10px 0 40px rgba(0,0,0,0.15); }
+    .car-highlight-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem; color: var(--navy); }
+    .car-highlight-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+    .btn-dark { display: inline-block; padding: 13px 32px; background: var(--navy); color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; border-radius: 3px; transition: background .3s; align-self: flex-start; }
+    .btn-dark:hover { background: var(--accent); }
+
+    /* ABOUT HERO */
+    .about-hero { position: relative; height: 600px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; background: var(--navy); }
+    .about-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0.45; }
+    .about-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,22,40,0.3), rgba(10,22,40,0.7)); z-index: 2; }
+    .about-hero-content { position: relative; z-index: 3; color: #fff; max-width: 860px; padding: 0 2.5rem; }
+    .about-hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; margin-bottom: 1.8rem; line-height: 1.25; letter-spacing: 1px; }
+    .about-hero-text { font-size: 0.82rem; line-height: 1.9; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; font-weight: 300; }
+    .btn-outline-white { display: inline-block; padding: 13px 38px; border: 1.5px solid rgba(255,255,255,0.8); color: #fff; text-decoration: none; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; border-radius: 3px; transition: all .3s; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+
+    /* WHY US */
+    .why-section { padding: 7rem 2.5rem; background: var(--off); }
+    .why-container { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .why-intro { font-size: 1rem; color: var(--muted); max-width: 640px; margin: 1.5rem auto 0; line-height: 1.8; }
+    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .why-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 2.5rem 1.8rem; transition: all .3s; text-align: center; }
+    .why-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.09); border-color: var(--gold); }
+    .why-icon { font-size: 2.2rem; margin-bottom: 1.2rem; }
+    .why-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.8rem; font-weight: 600; }
+    .why-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+    /* FAQ */
+    .faq-section { padding: 7rem 2.5rem; background: #fff; }
+    .faq-container { max-width: 760px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 3.5rem; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question { width: 100%; background: none; border: none; padding: 1.4rem 0; font-size: 1.05rem; font-family: 'Jost', sans-serif; font-weight: 500; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text); transition: color .25s; }
+    .faq-question:hover { color: var(--gold); }
+    .faq-icon { font-size: 1.4rem; transition: transform .3s; color: var(--gold); flex-shrink: 0; margin-left: 1rem; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s; color: var(--muted); line-height: 1.8; font-size: 0.9rem; }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.4rem; }
+
+    /* WHATSAPP */
+    .whatsapp-btn { position: fixed; bottom: 2rem; left: 2rem; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 200; box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform .3s, box-shadow .3s; text-decoration: none; }
+    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,0.55); }
+    .whatsapp-btn i { color: #fff; font-size: 1.7rem; }
+    .whatsapp-label { position: absolute; left: 70px; background: #fff; padding: 6px 14px; border-radius: 4px; white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-size: 0.85rem; font-weight: 500; color: var(--text); display: none; }
+    .whatsapp-btn:hover .whatsapp-label { display: block; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: #fff; padding: 4rem 2.5rem 1.5rem; }
+    .footer-top { max-width: 1300px; margin: 0 auto 3rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem; }
+    .footer-brand .logo-icon { color: var(--gold); font-size: 1.3rem; }
+    .footer-brand .logo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+    .footer-brand p { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.8; }
+    .footer-col h5 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 1.2rem; letter-spacing: 1px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.55rem; transition: color .25s; }
+    .footer-col a:hover { color: var(--gold2); }
+    .footer-bottom { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+    .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color .25s; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+        .experience-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+        .footer-top { grid-template-columns: 1fr 1fr; }
+        .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+    @media (max-width: 900px) {
+        .destinations-grid { grid-template-columns: 1fr; }
+        .dest-card { height: 320px; }
+        .car-highlight { flex-direction: column-reverse; }
+        .car-highlight-image { min-height: 300px; }
+        .car-highlight-text { width: 100%; padding: 3rem 2.5rem; }
+        .hero h1 { font-size: 3rem; }
+        .hero-content { width: 65%; padding: 3rem; }
+    }
+    @media (max-width: 768px) {
+        header { padding: 1rem 1.5rem; }
+        nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: white; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 305; }
+        nav.open { display: flex; }
+        nav a { font-size: 1.1rem; }
+        .mobile-menu-btn { display: flex; }
+        .mobile-menu-btn.open { z-index: 320; }
+        .mobile-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--navy); }
+        .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--navy); }
+        .hero { height: 100svh; justify-content: center; }
+        .hero-content { width: 100%; text-align: center; padding: 2rem 1.5rem; }
+        .hero-btns { justify-content: center; flex-wrap: wrap; }
+        .hero h1 { font-size: 2.5rem; }
+        .destinations-grid { grid-template-columns: 1fr; }
+        .experience-grid, .why-grid { grid-template-columns: 1fr; }
+        .stats-bar { flex-wrap: wrap; padding: 2rem; }
+        .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.2rem 0; }
+        .stat-item:last-child { border-bottom: none; }
+        .footer-top { grid-template-columns: 1fr; }
+        .section-title { font-size: 2rem; }
+        .header-right { gap: 0.6rem; }
+        .lang-switcher { padding: 3px; }
+        .lang-btn { padding: 4px 10px; font-size: 0.72rem; }
+    }
+    /* BOOKING MODAL */
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(10,22,40,0.78); z-index:1000; overflow-y:auto; backdrop-filter:blur(6px); }
+    .modal-overlay.open { display:flex; align-items:flex-start; justify-content:center; padding:2rem 1rem; }
+    .modal-box { background:#fff; width:100%; max-width:560px; border-radius:12px; overflow:hidden; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.3); margin:auto; }
+    .modal-header { background:var(--navy); padding:2rem 2.5rem 1.5rem; }
+    .modal-header h2 { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:400; color:#fff; }
+    .modal-header p { font-size:0.8rem; color:rgba(255,255,255,0.55); margin-top:4px; }
+    .modal-close { position:absolute; top:1rem; right:1.2rem; background:none; border:none; color:rgba(255,255,255,0.6); font-size:1.5rem; cursor:pointer; line-height:1; transition:color .2s; z-index:10; }
+    .modal-close:hover { color:#fff; }
+    .modal-body { padding:2rem 2.5rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+    .form-group { margin-bottom:1rem; }
+    .form-group label { display:block; font-size:0.72rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); margin-bottom:6px; }
+    .form-group input, .form-group select { width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:4px; font-family:'Jost',sans-serif; font-size:0.9rem; color:var(--text); background:#fff; transition:border-color .2s; }
+    .form-group input:focus, .form-group select:focus { outline:none; border-color:var(--gold); }
+    .price-preview { background:#f8f5ef; border:1px solid #e8e2d8; border-radius:6px; padding:1rem 1.2rem; margin-bottom:1.2rem; font-size:0.85rem; }
+    .price-preview .pp-row { display:flex; justify-content:space-between; padding:4px 0; color:var(--muted); }
+    .price-preview .pp-acompte { display:flex; justify-content:space-between; padding:8px 0 0; border-top:1px solid #e8e2d8; margin-top:6px; font-weight:700; color:var(--navy); font-size:0.95rem; }
+    .price-preview .pp-solde { display:flex; justify-content:space-between; color:#856404; font-size:0.82rem; padding-top:4px; }
+    .btn-stripe { width:100%; padding:15px; background:var(--gold); color:var(--navy); border:none; border-radius:4px; font-family:'Jost',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:all .3s; display:flex; align-items:center; justify-content:center; gap:10px; }
+    .btn-stripe:hover { background:var(--gold2); transform:translateY(-1px); }
+    .btn-stripe:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+    .modal-note { font-size:0.72rem; color:#aaa; text-align:center; margin-top:0.8rem; line-height:1.6; }
+    .modal-note a { color:var(--gold); text-decoration:none; }
+    @media(max-width:500px){ .form-row{grid-template-columns:1fr;} .modal-body{padding:1.5rem;} .modal-header{padding:1.5rem;} }
+
+
+    /* ═══════════════════════════════════════
+       MOBILE OPTIMIZATIONS (≤ 768px) — index
+       ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+        .hero-content { padding: 1.5rem 1rem; }
+        .hero h1 { font-size: 2.2rem; line-height: 1.2; }
+        .hero-sub { font-size: 0.82rem; }
+        .hero-btns { flex-direction: column; gap: 0.8rem; align-items: stretch; }
+        .hero-btns a, .hero-btns button { text-align: center; justify-content: center; }
+        .section-title { font-size: 1.8rem; }
+        .destinations-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .dest-card { height: 260px; }
+        .dest-name { font-size: 1.6rem; }
+        .dest-desc { font-size: 0.75rem; display: none; }
+        .stats-bar { flex-wrap: wrap; padding: 1.5rem 1rem; gap: 0; }
+        .stat-item { width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1rem 0; text-align: center; }
+        .stat-item:nth-child(2n) { border-left: 1px solid rgba(255,255,255,0.1); }
+        .stat-num { font-size: 1.8rem; }
+        .experience-grid { grid-template-columns: 1fr; }
+        .why-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .reviews-track { gap: 1rem; }
+        .review-card { min-width: 280px; padding: 1.5rem; }
+        .car-highlight { flex-direction: column-reverse; }
+        .car-highlight-text { padding: 2rem 1.2rem; width: 100%; }
+        .car-highlight-image { min-height: 240px; }
+        .car-highlight-title { font-size: 1.8rem; }
+        .faq-question { font-size: 0.82rem; padding: 1rem 1.2rem; }
+        .faq-answer { font-size: 0.82rem; padding: 0 1.2rem 1rem; }
+        .footer-top { grid-template-columns: 1fr; gap: 1.5rem; }
+        footer { padding: 2rem 1.2rem 1rem; }
+        .whatsapp-button { width: 50px; height: 50px; font-size: 1.4rem; bottom: 18px; right: 14px; }
+        /* Booking modal */
+        .modal-overlay { padding: 0.5rem; align-items: flex-end; }
+        .modal-box { border-radius: 12px 12px 0 0; max-height: 92vh; overflow-y: auto; }
+        .modal-header { padding: 1.2rem 1.5rem 1rem; }
+        .modal-header h2 { font-size: 1.35rem; }
+        .modal-body { padding: 1.2rem 1.5rem; }
+        .form-row { grid-template-columns: 1fr; }
+        .btn-stripe { padding: 14px; font-size: 0.8rem; letter-spacing: 1.5px; }
+    }
+    @media (max-width: 420px) {
+        .hero h1 { font-size: 1.85rem; }
+        .destinations-grid { grid-template-columns: 1fr; }
+        .dest-card { height: 220px; }
+        .why-grid { grid-template-columns: 1fr; }
+        .stat-item { width: 100%; border-left: none !important; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-crown"></i></span>
+        <div class="logo-text">
+            <span class="logo-name">King LuxeCar</span>
+            <span class="logo-sub">Luxury Car Rental</span>
+        </div>
+    </a>
+    <nav id="mainNav">
+        <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+        <a href="cannes.html" data-fr="Cannes" data-en="Cannes">Cannes</a>
+        <a href="monaco.html" data-fr="Monaco" data-en="Monaco">Monaco</a>
+        <a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
+       
+    </nav>
+    <div class="header-right">
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr">FR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Hero — 3D CSS animated car -->
+<section class="hero" id="home">
+    <div class="hero-overlay"></div>
+<!-- Video Background -->
+<video class="hero-canvas" autoplay="" muted="" loop="" playsinline="">
+    <source src="/hero.mp4" type="video/mp4">
+</video>
+
+    <div class="hero-content">
+        <p class="hero-eyebrow" data-fr="Cannes · Monaco" data-en="Cannes · Monaco">Cannes · Monaco</p>
+        <h1>
+            <span class="hero-line" data-fr="L&#39;Élégance" data-en="The Elegance">L'Élégance</span>
+            <span class="hero-line italic" data-fr="sur Route." data-en="on the Road.">sur Route.</span>
+        </h1>
+        <p class="hero-desc" data-fr="Une flotte d&#39;exception de voitures de luxe pour des expériences inoubliables à Cannes et Monaco." data-en="An exceptional fleet of luxury cars for unforgettable experiences in Cannes and Monaco.">
+            Une flotte d'exception de voitures de luxe pour des expériences inoubliables à Cannes et Monaco.
+        </p>
+       
+    </div>
+    <!-- Hero Badges — côté droit -->
+    <div class="hero-badges-col">
+        <div class="hero-badge-item">
+            <span class="hero-badge-icon"><i class="fas fa-shield-alt"></i></span>
+            <div>
+                <div class="hero-badge-title">Franchise 100% Incluse</div>
+                <div class="hero-badge-sub">Aucun supplément · Zéro surprise</div>
+            </div>
+        </div>
+        <div class="hero-badge-item">
+            <span class="hero-badge-icon"><i class="fas fa-lock-open"></i></span>
+            <div>
+                <div class="hero-badge-title">Zéro Caution</div>
+                <div class="hero-badge-sub">Aucun dépôt de garantie requis</div>
+            </div>
+        </div>
+        <div class="hero-badge-item">
+            <span class="hero-badge-icon"><i class="fas fa-concierge-bell"></i></span>
+            <div>
+                <div class="hero-badge-title">Conciergerie 24/7</div>
+                <div class="hero-badge-sub">Livraison hôtel / villa / yacht</div>
+            </div>
+        </div>
+        <div class="hero-badge-item">
+            <span class="hero-badge-icon"><i class="fas fa-receipt"></i></span>
+            <div>
+                <div class="hero-badge-title">Réservation — Acompte 50%</div>
+                <div class="hero-badge-sub">Reçu envoyé immédiatement</div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<!-- Search / Booking Form -->
+<div class="search-form-wrap">
+    <form class="search-form" id="searchForm" onsubmit="return submitSearchForm(event)">
+        <div class="search-form-header">
+            <div class="search-form-title">
+                <i class="fas fa-calendar-alt"></i>
+                <span data-fr="Dates &amp; Lieu de Remise" data-en="Dates &amp; Pickup Location">Dates &amp; Lieu de Remise</span>
+            </div>
+        </div>
+        <div class="search-form-body">
+            <div class="sf-field">
+                <label class="sf-label" data-fr="Date de Prise en Charge" data-en="Pick-up Date">Date de Prise en Charge</label>
+                <div class="sf-input-row">
+                    <input type="date" id="sf_debut" required>
+                    <i class="fas fa-calendar sf-icon"></i>
+                </div>
+            </div>
+            <div class="sf-field">
+                <label class="sf-label" data-fr="Date de Retour" data-en="Return Date">Date de Retour</label>
+                <div class="sf-input-row">
+                    <input type="date" id="sf_fin" required>
+                    <i class="fas fa-calendar sf-icon"></i>
+                </div>
+                <div class="sf-error" id="sf_dateError" data-fr="La date de retour doit être après la prise en charge" data-en="Return date must be after pick-up date">La date de retour doit être après la prise en charge</div>
+            </div>
+            <div class="sf-field">
+                <label class="sf-label" data-fr="Destination" data-en="Destination">Destination</label>
+                <div class="sf-input-row">
+                    <select id="sf_destination" required>
+                        <option value="monaco" data-fr="Monaco" data-en="Monaco">Monaco</option>
+                        <option value="cannes" data-fr="Cannes" data-en="Cannes">Cannes</option>
+                    </select>
+                    <i class="fas fa-chevron-down sf-icon"></i>
+                </div>
+            </div>
+            <div class="sf-field">
+                <label class="sf-label" data-fr="Lieu de Remise" data-en="Pickup Location">Lieu de Remise</label>
+                <div class="sf-input-row">
+                    <select id="sf_location" required></select>
+                    <i class="fas fa-chevron-down sf-icon"></i>
+                </div>
+            </div>
+            <div class="sf-submit">
+                <button type="submit" class="btn-search" data-fr="Rechercher" data-en="Search">Rechercher</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+    <div class="stat-item">
+        <div class="stat-number">35+</div>
+        <div class="stat-label" data-fr="Voitures de Luxe" data-en="Luxury Cars">Voitures de Luxe</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">2</div>
+        <div class="stat-label" data-fr="Destinations" data-en="Destinations">Destinations</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">15+</div>
+        <div class="stat-label" data-fr="Années d&#39;Expérience" data-en="Years of Experience">Années d'Expérience</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">2000+</div>
+        <div class="stat-label" data-fr="Clients Satisfaits" data-en="Satisfied Clients">Clients Satisfaits</div>
+    </div>
+</div>
+
+<!-- Destinations Section -->
+<section class="destinations-section" id="destinations">
+    <div class="destinations-container">
+        <div class="section-header">
+            <span class="section-eyebrow" data-fr="Nos Destinations" data-en="Our Destinations">Nos Destinations</span>
+            <h2 class="section-title">
+                <span class="title-line" data-fr="Location de Voitures de Luxe" data-en="Luxury Car Rental">Location de Voitures de Luxe</span>
+                <span class="title-line" data-fr="dans les Plus Beaux Endroits" data-en="in the Most Beautiful Places">dans les Plus Beaux Endroits</span>
+            </h2>
+        </div>
+        <div class="destinations-grid">
+            <!-- Cannes -->
+            <div class="dest-card">
+                <img src="cannes.png" alt="Cannes">
+                <div class="dest-overlay">
+                    <div class="dest-info">
+                        <span class="dest-tag" data-fr="Côte d&#39;Azur, France" data-en="French Riviera, France">Côte d'Azur, France</span>
+                        <div class="dest-name">Cannes</div>
+                        <div class="dest-desc" data-fr="Ferrari, Lamborghini &amp; Rolls-Royce sur la Croisette" data-en="Ferrari, Lamborghini &amp; Rolls-Royce on La Croisette">Ferrari, Lamborghini & Rolls-Royce sur la Croisette</div>
+                        <a class="dest-arrow" href="cannes.html">
+                            <span data-fr="Découvrir" data-en="Discover">Découvrir</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Monaco -->
+            <div class="dest-card">
+                <img src="monaco.png" alt="Monaco">
+                <div class="dest-overlay">
+                    <div class="dest-info">
+                        <span class="dest-tag" data-fr="Principauté de Monaco" data-en="Principality of Monaco">Principauté de Monaco</span>
+                        <div class="dest-name">Monaco</div>
+                        <div class="dest-desc" data-fr="Lamborghini, McLaren &amp; Bentley dans la cité des milliardaires" data-en="Lamborghini, McLaren &amp; Bentley in the billionaires&#39; city">Lamborghini, McLaren & Bentley dans la cité des milliardaires</div>
+                        <a class="dest-arrow" href="monaco.html">
+                            <span data-fr="Découvrir" data-en="Discover">Découvrir</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="experience-section">
+    <div class="experience-container">
+        <div class="section-header" style="text-align:left">
+            <span class="section-eyebrow" data-fr="L&#39;Excellence King Carluxe" data-en="The King Carluxe Experience">L'Excellence King Carluxe</span>
+            <h2 class="section-title" data-fr="Une Expérience Sans Égale" data-en="An Unparalleled Experience">Une Expérience Sans Égale</h2>
+        </div>
+        <div class="experience-grid">
+            <div class="exp-card">
+                <div class="exp-icon"><i class="fas fa-car" style="color:var(--gold)"></i></div>
+                <h3 data-fr="Flotte Premium" data-en="Premium Fleet">Flotte Premium</h3>
+                <p data-fr="35+ supercars soigneusement entretenues: Ferrari, Lamborghini, Rolls-Royce, Bentley, Bugatti et bien plus." data-en="35+ carefully maintained supercars: Ferrari, Lamborghini, Rolls-Royce, Bentley, Bugatti and more.">35+ supercars soigneusement entretenues: Ferrari, Lamborghini, Rolls-Royce, Bentley, Bugatti et bien plus.</p>
+            </div>
+            <div class="exp-card">
+                <div class="exp-icon"><i class="fas fa-concierge-bell" style="color:var(--gold)"></i></div>
+                <h3 data-fr="Conciergerie 24/7" data-en="24/7 Concierge">Conciergerie 24/7</h3>
+                <p data-fr="Service dédié disponible 24h/7j. Livraison à votre hôtel, villa ou yacht. Chauffeur privé disponible en option." data-en="Dedicated service available 24/7. Delivery to your hotel, villa or yacht. Private driver available as an option.">Service dédié disponible 24h/7j. Livraison à votre hôtel, villa ou yacht. Chauffeur privé disponible en option.</p>
+            </div>
+            <div class="exp-card">
+                <div class="exp-icon"><i class="fas fa-shield-alt" style="color:var(--gold)"></i></div>
+                <h3 data-fr="Franchise Incluse · Zéro Caution" data-en="Included Excess · Zero Deposit">Franchise Incluse · Zéro Caution</h3>
+                <p data-fr="Chaque location inclut la franchise complète dans le prix affiché. Aucun dépôt de garantie, aucune caution, aucune mauvaise surprise — le prix que vous voyez est le prix que vous payez." data-en="Every rental includes full excess coverage in the displayed price. No security deposit, no caution, no hidden costs — the price you see is the price you pay.">Chaque location inclut la franchise complète dans le prix affiché. Aucun dépôt de garantie, aucune caution, aucune mauvaise surprise — le prix que vous voyez est le prix que vous payez.</p>
+            </div>
+            <div class="exp-card">
+                <div class="exp-icon"><i class="fas fa-gem" style="color:var(--gold)"></i></div>
+                <h3 data-fr="Sur Mesure" data-en="Fully Tailored">Sur Mesure</h3>
+                <p data-fr="Itinéraires VIP, yacht et hélicoptère disponibles. Chaque expérience est personnalisée selon vos désirs." data-en="VIP itineraries, yacht and helicopter available. Every experience is customized to your desires.">Itinéraires VIP, yacht et hélicoptère disponibles. Chaque expérience est personnalisée selon vos désirs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Google Reviews -->
+<section class="reviews-section">
+    <div class="reviews-header">
+        <div>
+            <span class="section-eyebrow" style="display:flex;align-items:center;gap:10px;font-size:0.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">
+                <span style="display:inline-block;width:32px;height:1px;background:var(--gold)"></span>
+                Avis Clients
+            </span>
+            <h2 class="section-title">Ce que disent<br><span style="font-style:italic">nos clients</span></h2>
+        </div>
+        <div class="reviews-google-badge">
+            <svg width="22" height="22" viewbox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 32.4 29.4 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.3 1 7.2 2.8l5.7-5.7C33.5 7.1 29 5 24 5 13.5 5 5 13.5 5 24s8.5 19 19 19c10.5 0 18-7.5 18-18 0-1-.1-2-.4-3z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 19 13 24 13c2.8 0 5.3 1 7.2 2.8l5.7-5.7C33.5 7.1 29 5 24 5c-7.5 0-14 4.3-17.7 9.7z"/><path fill="#4CAF50" d="M24 43c4.9 0 9.4-1.8 12.8-4.8l-5.9-5c-1.8 1.3-4.1 2-6.9 2-5.3 0-9.8-3.5-11.4-8.3l-6.5 5C8.5 38.5 15.7 43 24 43z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3c-.8 2.2-2.3 4-4.2 5.2l5.9 5c3.5-3.2 5.5-7.9 5.5-13.2 0-1-.1-2-.9-5z"/></svg>
+            <div>
+                <div class="g-score">4.9</div>
+                <div class="g-stars">★★★★★</div>
+                <div class="g-count">+127 avis Google</div>
+            </div>
+        </div>
+    </div>
+    <div class="reviews-track-wrap">
+        <div class="reviews-track" id="reviewsTrack">
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#4285F4">A</div>
+                    <div><div class="review-author">Alexandre M.</div><div class="review-date">Il y a 3 jours</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Service exceptionnel ! La Ferrari était livrée à notre villa en 30 minutes. Prix imbattable, rien à redire. On reviendra sans hésiter.</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#EA4335">S</div>
+                    <div><div class="review-author">Sophie L.</div><div class="review-date">Il y a 1 semaine</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Le Rolls-Royce Ghost pour notre anniversaire de mariage à Monaco. Une expérience magique, chauffeur professionnel, accueil VIP. Parfait du début à la fin.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#34A853">J</div>
+                    <div><div class="review-author">James K.</div><div class="review-date">Il y a 2 semaines</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Bugatti Chiron à Monaco — une expérience de vie. King Carluxe était bien moins cher que toutes les autres agences sur place. Service impeccable.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#FBBC04; color:#333">M</div>
+                    <div><div class="review-author">Marie-Claire B.</div><div class="review-date">Il y a 3 semaines</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Lamborghini Huracán sur la Croisette, quelle sensation ! Réservation simple, reçu immédiat, livraison à l'hôtel à l'heure pile. Très professionnel.</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#9C27B0">R</div>
+                    <div><div class="review-author">Ricardo V.</div><div class="review-date">Il y a 1 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Rolls-Royce Cullinan pour notre lune de miel aux Caraïbes. Magnifique voiture, très bien entretenue. L'acompte de 50% et le reçu instantané ont mis en confiance dès le départ.</div>
+                <span class="review-dest">Caraïbes</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#FF5722">C</div>
+                    <div><div class="review-author">Charlotte D.</div><div class="review-date">Il y a 1 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">J'ai comparé 5 agences à Cannes — King Carluxe était de loin le moins cher pour exactement la même Ferrari. Plus jamais ailleurs. Merci !</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#00BCD4">T</div>
+                    <div><div class="review-author">Thomas R.</div><div class="review-date">Il y a 5 semaines</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">McLaren 720S livré directement sur le port de Monaco. Conciergerie disponible à minuit pour une question — impressionnant. Une qualité de service rare.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#E91E63">L</div>
+                    <div><div class="review-author">Laura F.</div><div class="review-date">Il y a 2 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Ferrari F8 Spider aux Caraïbes, c'est tout simplement le paradis. Assurance incluse, aucune mauvaise surprise. Reçu reçu en moins de 2 minutes après le paiement.</div>
+                <span class="review-dest">Caraïbes</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#607D8B">P</div>
+                    <div><div class="review-author">Pierre-Yves G.</div><div class="review-date">Il y a 2 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Bentley Continental GT pour le Festival de Cannes. Tout était parfait — ponctualité, état de la voiture, service. Je recommande à tous mes contacts.</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#FF9800">N</div>
+                    <div><div class="review-author">Natasha P.</div><div class="review-date">Il y a 2 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Porsche 918 Spyder à Monaco pour le Grand Prix. Une folie, mais à un prix que personne d'autre ne propose. L'équipe est extraordinaire et très réactive.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+
+            <!-- Duplicate set for seamless loop -->
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#4285F4">A</div>
+                    <div><div class="review-author">Alexandre M.</div><div class="review-date">Il y a 3 jours</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Service exceptionnel ! La Ferrari était livrée à notre villa en 30 minutes. Prix imbattable, rien à redire. On reviendra sans hésiter.</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#EA4335">S</div>
+                    <div><div class="review-author">Sophie L.</div><div class="review-date">Il y a 1 semaine</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Le Rolls-Royce Ghost pour notre anniversaire de mariage à Monaco. Une expérience magique, chauffeur professionnel, accueil VIP. Parfait du début à la fin.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#34A853">J</div>
+                    <div><div class="review-author">James K.</div><div class="review-date">Il y a 2 semaines</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Bugatti Chiron à Monaco — une expérience de vie. King Carluxe était bien moins cher que toutes les autres agences sur place. Service impeccable.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#FBBC04; color:#333">M</div>
+                    <div><div class="review-author">Marie-Claire B.</div><div class="review-date">Il y a 3 semaines</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Lamborghini Huracán sur la Croisette, quelle sensation ! Réservation simple, reçu immédiat, livraison à l'hôtel à l'heure pile. Très professionnel.</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#9C27B0">R</div>
+                    <div><div class="review-author">Ricardo V.</div><div class="review-date">Il y a 1 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Rolls-Royce Cullinan pour notre lune de miel aux Caraïbes. L'acompte de 50% et le reçu instantané ont mis en confiance dès le départ.</div>
+                <span class="review-dest">Caraïbes</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#FF5722">C</div>
+                    <div><div class="review-author">Charlotte D.</div><div class="review-date">Il y a 1 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">J'ai comparé 5 agences à Cannes — King Carluxe était de loin le moins cher pour exactement la même Ferrari. Plus jamais ailleurs.</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#00BCD4">T</div>
+                    <div><div class="review-author">Thomas R.</div><div class="review-date">Il y a 5 semaines</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">McLaren 720S livré directement sur le port de Monaco. Conciergerie disponible à minuit pour une question — impressionnant.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#E91E63">L</div>
+                    <div><div class="review-author">Laura F.</div><div class="review-date">Il y a 2 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Ferrari F8 Spider aux Caraïbes. Assurance incluse, aucune mauvaise surprise. Reçu reçu en moins de 2 minutes après le paiement.</div>
+                <span class="review-dest">Caraïbes</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#607D8B">P</div>
+                    <div><div class="review-author">Pierre-Yves G.</div><div class="review-date">Il y a 2 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Bentley Continental GT pour le Festival de Cannes. Tout était parfait — ponctualité, état de la voiture, service.</div>
+                <span class="review-dest">Cannes</span>
+            </div>
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar" style="background:#FF9800">N</div>
+                    <div><div class="review-author">Natasha P.</div><div class="review-date">Il y a 2 mois</div></div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">Porsche 918 Spyder à Monaco pour le Grand Prix. Une folie, mais à un prix que personne d'autre ne propose. L'équipe est extraordinaire.</div>
+                <span class="review-dest">Monaco</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- About Hero -->
+<section class="about-hero" id="about">
+    <img src="carros.png" alt="King Carluxe">
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+        <h1 data-fr="Conduire le Luxe. Vivre le Prestige." data-en="Drive Luxury. Live Prestige.">Conduire le Luxe. Vivre le Prestige.</h1>
+        <p class="about-hero-text" data-fr="Le choix d&#39;un véhicule de luxe est la première étape pour créer une expérience inoubliable. Que vous souhaitiez une Ferrari pour le Grand Prix de Monaco ou une Rolls-Royce pour le Festival de Cannes, nous proposons une sélection exclusive de supercars et véhicules de prestige adaptés à vos désirs." data-en="Choosing your luxury vehicle is the first step to creating an unforgettable experience. Whether you want a Ferrari for the Monaco Grand Prix or a Rolls-Royce for the Cannes Film Festival, we offer an exclusive selection of supercars tailored to your desires.">
+            Le choix d'un véhicule de luxe est la première étape pour créer une expérience inoubliable. Que vous souhaitiez une Ferrari pour le Grand Prix de Monaco ou une Rolls-Royce pour le Festival de Cannes, nous proposons une sélection exclusive de supercars et véhicules de prestige adaptés à vos désirs.
+        </p>
+        <a href="#destinations" class="btn-outline-white" data-fr="Nos Destinations" data-en="Our Destinations">Nos Destinations</a>
+    </div>
+</section>
+
+<!-- Why Us -->
+<section class="why-section">
+    <div class="why-container">
+        <div class="section-header">
+            <span class="section-eyebrow" data-fr="Pourquoi Nous Choisir" data-en="Why Choose Us">Pourquoi Nous Choisir</span>
+            <h2 class="section-title" data-fr="Pourquoi choisir King Carluxe" data-en="Why Choose King Carluxe">Pourquoi choisir King Carluxe</h2>
+        </div>
+        <p class="why-intro" data-fr="King Carluxe est reconnu pour offrir des expériences exclusives de location de voitures de luxe dans les destinations les plus prestigieuses du monde." data-en="King Carluxe is known for delivering exclusive luxury car rental experiences in the world&#39;s most prestigious destinations.">
+            King Carluxe est reconnu pour offrir des expériences exclusives de location de voitures de luxe dans les destinations les plus prestigieuses du monde.
+        </p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">🏎️</div>
+                <h3 data-fr="Flotte de Luxe" data-en="Luxury Fleet">Flotte de Luxe</h3>
+                <p data-fr="Ferrari, Lamborghini, Rolls-Royce, Bentley, McLaren, Bugatti — les plus grandes marques du monde." data-en="Ferrari, Lamborghini, Rolls-Royce, Bentley, McLaren, Bugatti — the world&#39;s greatest brands.">Ferrari, Lamborghini, Rolls-Royce, Bentley, McLaren, Bugatti — les plus grandes marques du monde.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🚗</div>
+                <h3 data-fr="Livraison à Domicile" data-en="Home Delivery">Livraison à Domicile</h3>
+                <p data-fr="Livraison et reprise à votre hôtel, villa ou yacht — à l&#39;heure que vous choisissez." data-en="Delivery and pickup at your hotel, villa or yacht — at the time of your choice.">Livraison et reprise à votre hôtel, villa ou yacht — à l'heure que vous choisissez.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🌍</div>
+                <h3 data-fr="Destinations Exclusives" data-en="Exclusive Destinations">Destinations Exclusives</h3>
+                <p data-fr="Nous opérons exclusivement à Monaco et Cannes." data-en="We operate exclusively in Monaco and Cannes.">Nous opérons exclusivement à Monaco et Cannes.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🛡️</div>
+                <h3 data-fr="Franchise Incluse · Zéro Caution" data-en="Included Excess · Zero Deposit">Franchise Incluse · Zéro Caution</h3>
+                <p data-fr="Franchise complète incluse dans le prix affiché. Aucun dépôt de garantie requis. Le prix affiché est le prix final." data-en="Full excess included in the displayed price. No security deposit required. The displayed price is the final price.">Franchise complète incluse dans le prix affiché. Aucun dépôt de garantie requis. Le prix affiché est le prix final.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+    <div class="faq-container">
+        <div class="faq-header">
+            <span class="section-eyebrow" data-fr="Vos Questions" data-en="Your Questions">Vos Questions</span>
+            <h2 class="section-title" data-fr="Questions Fréquentes" data-en="Frequently Asked Questions">Questions Fréquentes</h2>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                <span data-fr="Comment fonctionne la réservation ?" data-en="How does the booking process work?">Comment fonctionne la réservation ?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" data-fr="Sélectionnez votre destination et votre véhicule, choisissez vos dates, puis procédez à la réservation en versant un acompte de 50%. Le solde est réglé à la remise des clés. Livraison à votre hôtel ou villa incluse." data-en="Select your destination and vehicle, choose your dates, then confirm by paying a 50% deposit. The balance is paid at key handover. Delivery to your hotel or villa is included.">
+                Sélectionnez votre destination et votre véhicule, choisissez vos dates, puis procédez à la réservation en versant un acompte de 50%. Le solde est réglé à la remise des clés. Livraison à votre hôtel ou villa incluse.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                <span data-fr="Quels documents sont nécessaires ?" data-en="What documents are required?">Quels documents sont nécessaires ?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" data-fr="Un permis de conduire valide (international accepté), une pièce d&#39;identité et une carte bancaire pour la caution. Pour certains véhicules de haute performance, une expérience de conduite minimale peut être requise." data-en="A valid driver&#39;s license (international accepted), ID document and credit card for deposit. For certain high-performance vehicles, minimum driving experience may be required.">
+                Un permis de conduire valide (international accepté), une pièce d'identité et une carte bancaire pour la caution. Pour certains véhicules de haute performance, une expérience de conduite minimale peut être requise.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                <span data-fr="L&#39;assurance est-elle incluse ?" data-en="Is insurance included?">L'assurance est-elle incluse ?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" data-fr="Oui, chaque location inclut une assurance tous risques avec franchise réduite. Des options de couverture zéro franchise sont disponibles en supplément." data-en="Yes, every rental includes comprehensive insurance with reduced excess. Zero excess coverage options are available at an additional cost.">
+                Oui, chaque location inclut une assurance tous risques avec franchise réduite. Des options de couverture zéro franchise sont disponibles en supplément.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                <span data-fr="Puis-je avoir un chauffeur privé ?" data-en="Can I have a private driver?">Puis-je avoir un chauffeur privé ?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" data-fr="Absolument. Nous proposons des services de chauffeur professionnel pour tous nos véhicules. Idéal pour les événements, les sorties nocturnes ou simplement pour profiter pleinement du voyage." data-en="Absolutely. We offer professional chauffeur services for all our vehicles. Perfect for events, evening outings or simply to fully enjoy the journey.">
+                Absolument. Nous proposons des services de chauffeur professionnel pour tous nos véhicules. Idéal pour les événements, les sorties nocturnes ou simplement pour profiter pleinement du voyage.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                <span data-fr="Quelles sont les conditions d&#39;annulation ?" data-en="What is your cancellation policy?">Quelles sont les conditions d'annulation ?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" data-fr="Annulation gratuite jusqu&#39;à 72h avant le début de la location. Entre 72h et 24h: 50% du montant retenu. Moins de 24h: 100% du montant. En cas de force majeure, un avoir est proposé." data-en="Free cancellation up to 72h before rental start. Between 72h and 24h: 50% retained. Less than 24h: 100% retained. In case of force majeure, a credit note is offered.">
+                Annulation gratuite jusqu'à 72h avant le début de la location. Entre 72h et 24h: 50% du montant retenu. Moins de 24h: 100% du montant. En cas de force majeure, un avoir est proposé.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                <span data-fr="Quels modes de paiement acceptez-vous ?" data-en="What payment methods do you accept?">Quels modes de paiement acceptez-vous ?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" data-fr="Nous acceptons les virements bancaires, toutes les grandes cartes bancaires (Visa, Mastercard, Amex) et les paiements sécurisés en ligne via Stripe. Un acompte de 50% est requis à la réservation." data-en="We accept bank transfers, all major credit cards (Visa, Mastercard, Amex) and secure online payments via Stripe. A 50% deposit is required at booking.">
+                Nous acceptons les virements bancaires, toutes les grandes cartes bancaires (Visa, Mastercard, Amex) et les paiements sécurisés en ligne via Stripe. Un acompte de 50% est requis à la réservation.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WhatsApp -->
+<a class="whatsapp-btn" href="https://wa.me/33753150620" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-label" data-fr="Nous écrire" data-en="Chat with us">Nous écrire</span>
+</a>
+
+<!-- Footer -->
+<footer id="contact">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon"><i class="fas fa-crown" style="color:var(--gold);font-size:1.3rem"></i></span>
+                <span class="logo-name">King Carluxe</span>
+            </div>
+            <p data-fr="Découvrez le luxe sur route avec notre flotte exclusive de supercars et voitures de prestige à Cannes et Monaco." data-en="Experience luxury on the road with our exclusive fleet of supercars and prestige vehicles in Cannes and Monaco.">
+                Découvrez le luxe sur route avec notre flotte exclusive de supercars et voitures de prestige à Cannes et Monaco.
+            </p>
+        </div>
+        <div class="footer-col">
+            <h5 data-fr="Navigation" data-en="Navigation">Navigation</h5>
+            <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="#destinations" data-fr="Destinations" data-en="Destinations">Destinations</a>
+            <a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
+        </div>
+        <div class="footer-col">
+            <h5 data-fr="Contact" data-en="Contact">Contact</h5>
+            <a href="tel:+33753150620">+33 7 53 15 06 20</a>
+            <a href="mailto:contact@kingluxecar.com">contact@kingluxecar.com</a>
+        </div>
+        <div class="footer-col">
+            <h5 data-fr="Horaires" data-en="Hours">Horaires</h5>
+            <a href="#" data-fr="Lun – Ven : 9h – 19h" data-en="Mon – Fri: 9AM – 7PM">Lun – Ven : 9h – 19h</a>
+            <a href="#" data-fr="Sam/Dim : 10h – 20h" data-en="Sat/Sun: 10AM – 8PM">Sam/Dim : 10h – 20h</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 King Carluxe · Luxury Car Rental</p>
+        <div style="display:flex;gap:1.5rem">
+            <a href="legal.html">Mentions légales</a>
+            <a href="legal.html">Confidentialité</a>
+            <a href="legal.html">CGV</a>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ MODAL RÉSERVATION → STRIPE ═══ -->
+<div class="modal-overlay" id="bookingModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeBookingModal()">✕</button>
+        <div class="modal-header">
+            <h2>Réserver votre voiture</h2>
+            <p>Acompte de 50% en ligne · Franchise incluse · Zéro caution · Paiement sécurisé Stripe</p>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label>Véhicule</label>
+                <select id="bk_car" onchange="calcPreview()">
+                    <optgroup label="── CANNES ──">
+                        <option value="Lamborghini Revuelto|Cannes|2490|https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?w=900&amp;q=80">Lamborghini Revuelto — Cannes — 2 490€/j</option>
+                        <option value="Ferrari 296 GTS|Cannes|1990|https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900&amp;q=80">Ferrari 296 GTS — Cannes — 1 990€/j</option>
+                        <option value="Lamborghini Huracán Technica|Cannes|2190|https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?w=900&amp;q=80">Lamborghini Huracán Technica — Cannes — 2 190€/j</option>
+                        <option value="Rolls-Royce Spectre|Cannes|1690|https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&amp;q=80">Rolls-Royce Spectre — Cannes — 1 690€/j</option>
+                        <option value="Bentley Continental GT|Cannes|1390|https://images.unsplash.com/photo-1555215695-3004980ad54e?w=900&amp;q=80">Bentley Continental GT — Cannes — 1 390€/j</option>
+                        <option value="Rolls-Royce Cullinan|Cannes|1890|https://images.unsplash.com/photo-1561049501-e1f96bdd98fd?w=900&amp;q=80">Rolls-Royce Cullinan — Cannes — 1 890€/j</option>
+                        <option value="Ferrari Purosangue|Cannes|1990|https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900&amp;q=80">Ferrari Purosangue — Cannes — 1 990€/j</option>
+                        <option value="Mercedes-Maybach S-Class|Cannes|1290|https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&amp;q=80">Mercedes-Maybach S-Class — Cannes — 1 290€/j</option>
+                        <option value="Rolls-Royce Ghost|Cannes|1590|https://images.unsplash.com/photo-1561049501-e1f96bdd98fd?w=900&amp;q=80">Rolls-Royce Ghost — Cannes — 1 590€/j</option>
+                    </optgroup>
+                    <optgroup label="── MONACO ──">
+                        <option value="Lamborghini Revuelto|Monaco|2490|https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?w=900&amp;q=80">Lamborghini Revuelto — Monaco — 2 490€/j</option>
+                        <option value="Ferrari 296 GTS|Monaco|1990|https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900&amp;q=80">Ferrari 296 GTS — Monaco — 1 990€/j</option>
+                        <option value="Lamborghini Huracán Technica|Monaco|2190|https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?w=900&amp;q=80">Lamborghini Huracán Technica — Monaco — 2 190€/j</option>
+                        <option value="Rolls-Royce Spectre|Monaco|1690|https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&amp;q=80">Rolls-Royce Spectre — Monaco — 1 690€/j</option>
+                        <option value="Bentley Continental GT|Monaco|1390|https://images.unsplash.com/photo-1555215695-3004980ad54e?w=900&amp;q=80">Bentley Continental GT — Monaco — 1 390€/j</option>
+                        <option value="Rolls-Royce Cullinan|Monaco|1890|https://images.unsplash.com/photo-1561049501-e1f96bdd98fd?w=900&amp;q=80">Rolls-Royce Cullinan — Monaco — 1 890€/j</option>
+                        <option value="Ferrari Purosangue|Monaco|1990|https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900&amp;q=80">Ferrari Purosangue — Monaco — 1 990€/j</option>
+                        <option value="Mercedes-Maybach S-Class|Monaco|1290|https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&amp;q=80">Mercedes-Maybach S-Class — Monaco — 1 290€/j</option>
+                        <option value="Rolls-Royce Ghost|Monaco|1590|https://images.unsplash.com/photo-1561049501-e1f96bdd98fd?w=900&amp;q=80">Rolls-Royce Ghost — Monaco — 1 590€/j</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Date de début</label>
+                    <input type="date" id="bk_debut" onchange="calcPreview()">
+                </div>
+                <div class="form-group">
+                    <label>Date de fin</label>
+                    <input type="date" id="bk_fin" onchange="calcPreview()">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Options (facultatif)</label>
+                <select id="bk_options">
+                    <option value="">Aucune option</option>
+                    <option value="Chauffeur privé">Chauffeur privé (+250€/j)</option>
+                    <option value="Livraison yacht">Livraison sur yacht (+150€)</option>
+                    <option value="Assurance zéro franchise">Assurance zéro franchise (+180€/j)</option>
+                    <option value="Chauffeur + zéro franchise">Chauffeur + zéro franchise (+430€/j)</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nom complet</label>
+                    <input type="text" id="bk_nom" placeholder="Jean Dupont">
+                </div>
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" id="bk_tel" placeholder="+33 6 00 00 00 00">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="bk_email" placeholder="jean@exemple.com">
+            </div>
+
+            <!-- Aperçu prix -->
+            <div class="price-preview" id="pricePreview" style="display:none;">
+                <div class="pp-row"><span>Prix / jour</span><span id="pp_jour">—</span></div>
+                <div class="pp-row"><span>Durée</span><span id="pp_jours">—</span></div>
+                <div class="pp-row" style="color:#2e7d32;font-weight:600"><span>✓ Franchise incluse</span><span>Offert</span></div>
+                <div class="pp-row" style="color:#1565c0;font-weight:600"><span>✓ Zéro caution</span><span>0 €</span></div>
+                <div class="pp-row"><span>Total location</span><span id="pp_total">—</span></div>
+                <div class="pp-acompte"><span>💳 Acompte 50% à payer</span><span id="pp_acompte">—</span></div>
+                <div class="pp-solde"><span>⏳ Solde à la remise des clés</span><span id="pp_solde">—</span></div>
+            </div>
+
+            <button class="btn-stripe" id="btnPay" onclick="submitToStripe()">
+                <i class="fas fa-lock"></i>
+                Payer l'acompte — Paiement sécurisé
+            </button>
+            <p class="modal-note">
+                🔒 Paiement sécurisé par <strong>Stripe</strong> · Visa, Mastercard, Amex acceptés<br>
+                ✓ <strong>Franchise incluse</strong> · <strong>Zéro caution</strong> · Prix final sans surprise<br>
+                Un reçu est envoyé immédiatement après paiement.<br>
+                <a href="#faq" onclick="closeBookingModal()">Voir conditions d'annulation</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+// ─── SEARCH FORM (hero) ───────────────────────────────────────────
+// Mêmes points de remise que sur monaco.html / cannes.html
+const SF_LOCATIONS = {
+    monaco: [
+        { group: 'Aéroports & Héliports', items: ["Héliport de Monaco", "Aéroport Nice Côte d'Azur (NCE)", "Héliport de Cannes"] },
+        { group: 'Hôtels Monaco', items: ["Hôtel de Paris — Monte-Carlo", "Hôtel Hermitage — Monte-Carlo", "Hôtel Métropole — Monte-Carlo", "Fairmont Monte-Carlo", "Hôtel Novotel — Monaco", "Columbus Monaco"] },
+        { group: 'Ports & Zones', items: ["Port Hercule — Monaco", "Port de Fontvieille", "Casino de Monte-Carlo", "Place du Casino", "Circuit de Monaco (F1)"] },
+        { group: 'Autres', items: ["Cap-d'Ail", "Roquebrune-Cap-Martin", "Menton", "Votre Hôtel / Villa / Yacht"] }
+    ],
+    cannes: [
+        { group: 'Aéroports', items: ["Aéroport Nice Côte d'Azur (NCE)", "Aéroport Cannes Mandelieu", "Héliport de Cannes"] },
+        { group: 'Hôtels Cannes', items: ["Hôtel Martinez — Cannes", "Hôtel Majestic Barrière — Cannes", "Hôtel Carlton — Cannes", "Hôtel JW Marriott — Cannes", "Hôtel Five Seas — Cannes", "Hôtel Mövenpick — Cannes"] },
+        { group: 'Ports & Zones', items: ["Port de Cannes (Vieux Port)", "Port Pierre Canto — Cannes", "La Croisette — Cannes", "Palais des Festivals — Cannes"] },
+        { group: 'Autres', items: ["Antibes — Juan-les-Pins", "Cap d'Antibes", "Mougins", "Votre Hôtel / Villa / Yacht"] }
+    ]
+};
+
+function sfPopulateLocations(dest, preselect) {
+    const sel = document.getElementById('sf_location');
+    if (!sel) return;
+    sel.innerHTML = '';
+    (SF_LOCATIONS[dest] || []).forEach(group => {
+        const og = document.createElement('optgroup');
+        og.label = '── ' + group.group + ' ──';
+        og.style.color = 'var(--gold2)';
+        group.items.forEach(label => {
+            const opt = document.createElement('option');
+            opt.value = label;
+            opt.textContent = label;
+            og.appendChild(opt);
+        });
+        sel.appendChild(og);
+    });
+    if (preselect) sel.value = preselect;
+}
+
+(function() {
+    const debutEl = document.getElementById('sf_debut');
+    const finEl    = document.getElementById('sf_fin');
+    const destEl   = document.getElementById('sf_destination');
+    if (!debutEl || !finEl || !destEl) return;
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    debutEl.min = todayStr;
+    finEl.min   = todayStr;
+
+    const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    const dayAfter = new Date(); dayAfter.setDate(dayAfter.getDate() + 2);
+    debutEl.value = tomorrow.toISOString().split('T')[0];
+    finEl.value   = dayAfter.toISOString().split('T')[0];
+
+    debutEl.addEventListener('change', () => {
+        finEl.min = debutEl.value;
+        if (finEl.value && finEl.value <= debutEl.value) {
+            const d = new Date(debutEl.value); d.setDate(d.getDate() + 1);
+            finEl.value = d.toISOString().split('T')[0];
+        }
+    });
+
+    // Populate locations on destination change, and on load
+    destEl.addEventListener('change', () => sfPopulateLocations(destEl.value));
+    sfPopulateLocations(destEl.value);
+})();
+
+function submitSearchForm(e) {
+    e.preventDefault();
+    const debut    = document.getElementById('sf_debut').value;
+    const fin      = document.getElementById('sf_fin').value;
+    const dest     = document.getElementById('sf_destination').value;
+    const location = document.getElementById('sf_location').value;
+    const errEl    = document.getElementById('sf_dateError');
+
+    if (!debut || !fin || new Date(fin) <= new Date(debut)) {
+        errEl.style.display = 'block';
+        return false;
+    }
+    errEl.style.display = 'none';
+
+    // Mémorise les données du formulaire pour monaco.html / cannes.html
+    try {
+        sessionStorage.setItem('kc_search', JSON.stringify({ debut, fin, destination: dest, location }));
+    } catch (err) {}
+
+    const target = dest === 'cannes' ? 'cannes.html' : 'monaco.html';
+    const params = new URLSearchParams({ debut, fin, destination: dest, location });
+    window.location.href = target + '?' + params.toString();
+    return false;
+}
+</script>
+
+<script>
+// ─── LANGUAGE ───────────────────────────────────────────────────
+let currentLang = 'fr';
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        currentLang = this.dataset.lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        applyLang(currentLang);
+    });
+});
+function applyLang(lang) {
+    document.querySelectorAll(`[data-${lang}]`).forEach(el => {
+        const val = el.getAttribute(`data-${lang}`);
+        if (!val) return;
+        const hasChildEl = Array.from(el.childNodes).some(n => n.nodeType === 1 && n.tagName !== 'BR');
+        if (hasChildEl) return;
+        el.textContent = val;
+    });
+}
+
+// ─── FAQ ────────────────────────────────────────────────────────
+document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const item = this.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    });
+});
+const firstFaq = document.querySelector('.faq-item');
+if (firstFaq) firstFaq.classList.add('open');
+
+// ─── MOBILE MENU ────────────────────────────────────────────────
+const mobileBtn = document.getElementById('mobileMenuBtn');
+const nav = document.getElementById('mainNav');
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', function() {
+        this.classList.toggle('open');
+        nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            mobileBtn.classList.remove('open');
+            nav.classList.remove('open');
+        });
+    });
+}
+
+// ─── SMOOTH SCROLL ──────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+
+// ─── BOOKING MODAL ──────────────────────────────────────────────
+function openBookingModal() {
+    document.getElementById('bookingModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Dates par défaut : demain + 3 jours
+    const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    const endDay   = new Date(); endDay.setDate(endDay.getDate() + 4);
+    document.getElementById('bk_debut').value = tomorrow.toISOString().split('T')[0];
+    document.getElementById('bk_fin').value   = endDay.toISOString().split('T')[0];
+    calcPreview();
+}
+function closeBookingModal() {
+    document.getElementById('bookingModal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+    if (e.target === this) closeBookingModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBookingModal(); });
+
+// ─── PRICE PREVIEW ──────────────────────────────────────────────
+function calcPreview() {
+    const sel      = document.getElementById('bk_car').value.split('|');
+    const prixJour = parseFloat(sel[2]) || 0;
+    const d1       = new Date(document.getElementById('bk_debut').value);
+    const d2       = new Date(document.getElementById('bk_fin').value);
+    const jours    = Math.max(1, Math.round((d2 - d1) / 86400000));
+
+    const preview  = document.getElementById('pricePreview');
+    if (!prixJour || isNaN(d1) || isNaN(d2) || d2 <= d1) { preview.style.display='none'; return; }
+
+    const total   = jours * prixJour;
+    const acompte = Math.round(total * 0.50 * 100) / 100;
+    const solde   = Math.round(total * 0.60 * 100) / 100;
+
+    document.getElementById('pp_jour').textContent   = prixJour.toLocaleString('fr-FR') + ' €';
+    document.getElementById('pp_jours').textContent  = jours + ' jour(s)';
+    document.getElementById('pp_total').textContent  = total.toLocaleString('fr-FR') + ' €';
+    document.getElementById('pp_acompte').textContent= acompte.toLocaleString('fr-FR') + ' €';
+    document.getElementById('pp_solde').textContent  = solde.toLocaleString('fr-FR') + ' €';
+    preview.style.display = 'block';
+}
+
+// ─── SUBMIT → STRIPE ────────────────────────────────────────────
+async function submitToStripe() {
+    const carVal   = document.getElementById('bk_car').value.split('|');
+    const car      = carVal[0];
+    const dest     = carVal[1];
+    const prixJour = parseFloat(carVal[2]);
+    const carImg   = carVal[3] || '';
+    const debut    = document.getElementById('bk_debut').value;
+    const fin      = document.getElementById('bk_fin').value;
+    const nom      = document.getElementById('bk_nom').value.trim();
+    const email    = document.getElementById('bk_email').value.trim();
+    const tel      = document.getElementById('bk_tel').value.trim();
+    const options  = document.getElementById('bk_options').value;
+
+    // Validation
+    if (!car || !debut || !fin || !nom || !email || !tel) {
+        alert('Veuillez remplir tous les champs obligatoires.');
+        return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Veuillez entrer un email valide.');
+        return;
+    }
+    const d1 = new Date(debut), d2 = new Date(fin);
+    if (d2 <= d1) { alert('La date de fin doit être après la date de début.'); return; }
+
+    const jours = Math.round((d2 - d1) / 86400000);
+
+    const btn = document.getElementById('btnPay');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirection vers Stripe…';
+
+    try {
+        const res = await fetch('create-payment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ car, destination: dest, date_debut: debut, date_fin: fin,
+                jours, prix_jour: prixJour, client_nom: nom, client_email: email,
+                client_tel: tel, car_img: carImg, options })
+        });
+        const data = await res.json();
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            throw new Error(data.error || 'Erreur inconnue');
+        }
+    } catch(e) {
+        alert('Erreur : ' + e.message + '\n\nContactez-nous : +33 7 53 15 06 20');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Payer l\'acompte — Paiement sécurisé';
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales & CGV — King Carluxe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --navy: #0a1628; --gold: #c9a84c; --gold2: #e8c97a; --text: #1a1a1a; --muted: #666; --border: #e0e0e0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; }
+
+    /* ── Header ── */
+    header { background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--border); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 300; box-shadow: 0 1px 12px rgba(0,0,0,0.07); backdrop-filter: blur(12px); }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .logo-line1 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; line-height: 1; }
+    .logo-line2 { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-top: 2px; }
+    nav { display: flex; gap: 2.5rem; align-items: center; flex: 1; justify-content: center; }
+    nav a { color: var(--text); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 1.8px; text-transform: uppercase; transition: color .25s; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    nav a:hover { color: var(--gold); }
+    nav a:hover::after { width: 100%; }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
+    .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    /* ── Page Hero ── */
+    .page-hero { background: var(--navy); padding: 4rem 2.5rem 3rem; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border: 1px solid rgba(201,168,76,0.12); border-radius: 50%; }
+    .page-hero::after { content: ''; position: absolute; bottom: -80px; left: 10%; width: 200px; height: 200px; border: 1px solid rgba(201,168,76,0.08); border-radius: 50%; }
+    .page-hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: block; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; color: #fff; line-height: 1.15; margin-bottom: 1rem; }
+    .page-hero-sub { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ── TOC Nav ── */
+    .toc-bar { background: #fafafa; border-bottom: 1px solid var(--border); padding: 0 2.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .toc-bar::-webkit-scrollbar { display: none; }
+    .toc-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 0; }
+    .toc-link { display: flex; align-items: center; gap: 7px; padding: 0.9rem 1.2rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: all .22s; }
+    .toc-link:hover, .toc-link.active { color: var(--navy); border-bottom-color: var(--gold); }
+    .toc-link i { color: var(--gold); font-size: 0.75rem; }
+
+    /* ── Main content ── */
+    .legal-wrap { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem 5rem; }
+
+    /* ── Section blocks ── */
+    .legal-section { margin-bottom: 4rem; padding-top: 1rem; }
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .section-icon { width: 44px; height: 44px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .section-icon i { color: var(--gold); font-size: 1rem; }
+    .section-number { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 2px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--navy); }
+
+    /* ── Article blocks ── */
+    .article { margin-bottom: 1.6rem; }
+    .article-title { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; }
+    .article-title::before { content: ''; display: block; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .article p { font-size: 0.88rem; line-height: 1.85; color: #444; margin-bottom: 0.7rem; }
+    .article p:last-child { margin-bottom: 0; }
+    .article ul { margin: 0.5rem 0 0.7rem 1.2rem; }
+    .article ul li { font-size: 0.88rem; line-height: 1.75; color: #444; margin-bottom: 0.3rem; }
+    .article ul li::marker { color: var(--gold); }
+
+    /* ── Highlight box ── */
+    .highlight-box { background: #f8f6f0; border-left: 3px solid var(--gold); padding: 1.1rem 1.4rem; border-radius: 0 6px 6px 0; margin: 1.2rem 0; }
+    .highlight-box p { font-size: 0.87rem; line-height: 1.8; color: #444; margin: 0; }
+    .highlight-box strong { color: var(--navy); }
+
+    /* ── Process steps ── */
+    .process-steps { display: flex; flex-direction: column; gap: 0; margin: 1.2rem 0; }
+    .process-step { display: flex; gap: 16px; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; }
+    .process-step:last-child { border-bottom: none; }
+    .step-num { width: 32px; height: 32px; background: var(--navy); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .step-content { flex: 1; }
+    .step-title { font-size: 0.8rem; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; margin-bottom: 3px; }
+    .step-desc { font-size: 0.85rem; color: #555; line-height: 1.7; }
+
+    /* ── Info grid ── */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0; }
+    .info-cell { background: #f8f9fb; border-radius: 6px; padding: 0.9rem 1.1rem; }
+    .info-cell-label { font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+    .info-cell-value { font-size: 0.88rem; color: var(--navy); font-weight: 500; }
+
+    /* ── Divider ── */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+    /* ── Contact CTA ── */
+    .contact-cta { background: var(--navy); border-radius: 10px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 2rem; }
+    .contact-cta-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: #fff; margin-bottom: 0.4rem; }
+    .contact-cta-text p { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+    .contact-cta-btn { background: var(--gold); color: var(--navy); border: none; padding: 0.9rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 4px; white-space: nowrap; transition: background .25s; }
+    .contact-cta-btn:hover { background: var(--gold2); }
+
+    /* ── Footer ── */
+    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-section h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 1rem; }
+    .footer-section a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 0.5rem; font-size: 0.88rem; transition: color 0.3s; }
+    .footer-section a:hover { color: var(--gold2); }
+    .footer-section p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.7; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+    .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    footer { background: var(--navy); color: #fff; padding: 3rem 2rem 1.5rem; }
+
+    /* ── WhatsApp ── */
+    .whatsapp-button { position: fixed; bottom: 28px; right: 28px; background: #25D366; color: white; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 200; box-shadow: 0 4px 15px rgba(37,211,102,0.4); transition: transform 0.3s; font-size: 1.6rem; text-decoration: none; }
+    .whatsapp-button:hover { transform: scale(1.1); }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+        header { padding: 0.85rem 1rem; }
+        .logo-line1 { font-size: 1.2rem; letter-spacing: 2px; }
+        nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 150; }
+        nav.open { display: flex; }
+        nav a { font-size: 1.1rem; }
+        .mobile-menu-btn { display: flex; }
+        .page-hero { padding: 2.5rem 1.2rem 2rem; }
+        .page-hero h1 { font-size: 1.8rem; }
+        .toc-bar { padding: 0 1rem; }
+        .toc-link { padding: 0.75rem 0.8rem; font-size: 0.65rem; }
+        .legal-wrap { padding: 2rem 1.2rem 3rem; }
+        .section-title { font-size: 1.3rem; }
+        .info-grid { grid-template-columns: 1fr; }
+        .contact-cta { flex-direction: column; padding: 1.8rem; }
+        .contact-cta-btn { width: 100%; text-align: center; padding: 1rem; }
+        .footer-content { grid-template-columns: 1fr; gap: 1.2rem; }
+        footer { padding: 1.8rem 1rem 1rem; }
+        .footer-bottom { flex-direction: column; gap: 0.4rem; text-align: center; }
+        .whatsapp-button { width: 52px; height: 52px; font-size: 1.45rem; bottom: 20px; right: 14px; }
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+        <span style="color:var(--gold);font-size:1.4rem;margin-right:8px"><i class="fas fa-crown"></i></span>
+        <div>
+            <div class="logo-line1">King Carluxe</div>
+            <div class="logo-line2">Luxury Car Rental</div>
+        </div>
+    </a>
+    <nav id="mainNav">
+        <a href="cannes.html">Cannes</a>
+        <a href="monaco.html">Monaco</a>
+        <a href="legal.html" class="active" style="color:var(--gold)">Mentions légales</a>
+    </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+</header>
+
+<!-- Page Hero -->
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <span class="page-hero-eyebrow">Informations légales</span>
+        <h1>Mentions Légales,<br>CGV & Politique de Confidentialité</h1>
+        <p class="page-hero-sub">Dernière mise à jour : janvier 2025 · King Carluxe — Location de voitures de luxe</p>
+    </div>
+</div>
+
+<!-- Table of Contents -->
+<div class="toc-bar">
+    <div class="toc-inner">
+        <a href="#mentions" class="toc-link active"><i class="fas fa-building"></i> Mentions légales</a>
+        <a href="#cgv" class="toc-link"><i class="fas fa-file-contract"></i> CGV</a>
+        <a href="#reservation" class="toc-link"><i class="fas fa-calendar-check"></i> Réservation</a>
+        <a href="#paiement" class="toc-link"><i class="fas fa-credit-card"></i> Paiement</a>
+        <a href="#annulation" class="toc-link"><i class="fas fa-times-circle"></i> Annulation</a>
+        <a href="#confidentialite" class="toc-link"><i class="fas fa-shield-alt"></i> Confidentialité</a>
+        <a href="#cookies" class="toc-link"><i class="fas fa-cookie"></i> Cookies</a>
+    </div>
+</div>
+
+<div class="legal-wrap">
+
+    <!-- ═══════════════════════════════════════
+         1. MENTIONS LÉGALES
+    ═══════════════════════════════════════ -->
+    <section class="legal-section" id="mentions">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-building"></i></div>
+            <div>
+                <span class="section-number">Section 01</span>
+                <div class="section-title">Mentions Légales</div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Éditeur du site</div>
+            <div class="info-grid">
+                <div class="info-cell"><div class="info-cell-label">Raison sociale</div><div class="info-cell-value">King Carluxe</div></div>
+                <div class="info-cell"><div class="info-cell-label">Forme juridique</div><div class="info-cell-value">Société en cours d'immatriculation / Auto-entrepreneur</div></div>
+                <div class="info-cell"><div class="info-cell-label">Email de contact</div><div class="info-cell-value">contact@kingluxecar.com</div></div>
+                <div class="info-cell"><div class="info-cell-label">Téléphone</div><div class="info-cell-value">+33 7 53 15 06 20</div></div>
+                <div class="info-cell"><div class="info-cell-label">Zones d'activité</div><div class="info-cell-value">Monaco · Cannes · Côte d'Azur</div></div>
+                <div class="info-cell"><div class="info-cell-label">Horaires</div><div class="info-cell-value">Lun–Ven 9h–19h · Sam/Dim 10h–20h</div></div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Hébergement</div>
+            <p>Le site web King Carluxe est hébergé par un prestataire professionnel. Pour toute demande relative à l'hébergement, veuillez contacter <strong>contact@kingluxecar.com</strong>.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Propriété intellectuelle</div>
+            <p>L'ensemble des contenus présents sur ce site (textes, images, logos, graphismes) est la propriété exclusive de King Carluxe et est protégé par les lois françaises et internationales relatives à la propriété intellectuelle. Toute reproduction, représentation ou diffusion, même partielle, est strictement interdite sans autorisation préalable écrite.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Responsabilité</div>
+            <p>King Carluxe s'efforce de maintenir les informations publiées sur ce site aussi précises et à jour que possible. Toutefois, la société ne peut être tenue responsable des omissions, inexactitudes ou lacunes dans la mise à jour. Les informations tarifaires sont données à titre indicatif et peuvent être modifiées à tout moment.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════
+         2. CONDITIONS GÉNÉRALES DE VENTE
+    ═══════════════════════════════════════ -->
+    <section class="legal-section" id="cgv">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-file-contract"></i></div>
+            <div>
+                <span class="section-number">Section 02</span>
+                <div class="section-title">Conditions Générales de Vente</div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Objet et champ d'application</div>
+            <p>Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des contrats de location de véhicules de luxe conclus entre King Carluxe (ci-après « le Loueur ») et tout client particulier ou professionnel (ci-après « le Locataire ») via le site internet ou par tout autre moyen de communication.</p>
+            <p>Toute réservation implique l'acceptation pleine et entière des présentes CGV. Le Locataire reconnaît en avoir pris connaissance avant de finaliser sa réservation.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Conditions d'éligibilité à la location</div>
+            <p>Pour louer un véhicule auprès de King Carluxe, le Locataire doit impérativement :</p>
+            <ul>
+                <li>Être âgé d'au moins <strong>25 ans</strong> (sauf mention contraire selon le véhicule)</li>
+                <li>Être titulaire d'un permis de conduire en cours de validité, obtenu depuis au moins <strong>3 ans</strong></li>
+                <li>Présenter une pièce d'identité officielle en cours de validité (passeport ou carte nationale d'identité)</li>
+                <li>Disposer d'une carte bancaire à son nom pour la caution éventuelle</li>
+                <li>Ne pas avoir fait l'objet d'une suspension ou d'un retrait de permis dans les 36 derniers mois</li>
+            </ul>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Véhicules et disponibilités</div>
+            <p>King Carluxe met à disposition une flotte de véhicules de luxe et de sport à Monaco, Cannes et sur la Côte d'Azur. Les véhicules présentés sur le site sont soumis à disponibilité. King Carluxe se réserve le droit de substituer un véhicule par un modèle équivalent ou supérieur en cas d'indisponibilité, sous réserve d'accord préalable du Locataire.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Livraison et remise du véhicule</div>
+            <p>King Carluxe assure la livraison du véhicule directement au lieu souhaité par le Locataire : hôtel, villa, héliport, port, aéroport ou toute autre adresse convenue.</p>
+            <div class="highlight-box">
+                <p><strong>Organisation de la livraison :</strong> Une semaine avant la date de prise en charge, notre équipe prend contact avec le Locataire afin de confirmer et d'organiser précisément les modalités de livraison (heure, lieu exact, coordonnées du contact sur place).</p>
+            </div>
+            <p>La remise des clés est conditionnée à la présentation des documents requis et à la validation du paiement conformément aux conditions définies ci-après.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════
+         3. RÉSERVATION
+    ═══════════════════════════════════════ -->
+    <section class="legal-section" id="reservation">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-calendar-check"></i></div>
+            <div>
+                <span class="section-number">Section 03</span>
+                <div class="section-title">Processus de Réservation</div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Étapes de la réservation</div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Sélection du véhicule</div>
+                        <div class="step-desc">Le Locataire choisit son véhicule, ses dates de prise en charge et de retour, ainsi que le lieu de livraison souhaité via le formulaire de réservation en ligne.</div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Validation et paiement de l'acompte</div>
+                        <div class="step-desc">La réservation est confirmée après paiement de l'acompte de <strong>50 % du montant total de la location</strong>. Ce paiement vaut acceptation des présentes CGV.</div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Envoi immédiat de la facture</div>
+                        <div class="step-desc">Dès la validation du paiement, une facture détaillée est adressée <strong>immédiatement et automatiquement</strong> à l'adresse e-mail renseignée par le Locataire. Cette facture confirme la réservation et récapitule toutes les conditions convenues.</div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Prise de contact une semaine avant</div>
+                        <div class="step-desc">L'équipe King Carluxe contacte le Locataire <strong>7 jours avant la date de prise en charge</strong> pour confirmer l'heure et le lieu de livraison, et répondre à toute question éventuelle.</div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Remise du véhicule</div>
+                        <div class="step-desc">Le véhicule est livré au lieu convenu. Le Locataire présente ses documents, signe le contrat de location, et règle le solde restant (50 %) avant de prendre possession du véhicule.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Confirmation de réservation</div>
+            <p>La réservation est définitivement confirmée à réception de la facture par e-mail. En l'absence d'e-mail de confirmation dans les 30 minutes suivant le paiement, le Locataire est invité à contacter King Carluxe à l'adresse <strong>contact@kingluxecar.com</strong> ou par téléphone.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════
+         4. PAIEMENT
+    ═══════════════════════════════════════ -->
+    <section class="legal-section" id="paiement">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-credit-card"></i></div>
+            <div>
+                <span class="section-number">Section 04</span>
+                <div class="section-title">Conditions de Paiement</div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Modalités de paiement</div>
+            <div class="highlight-box">
+                <p><strong>Acompte de 50 %</strong> — Payable à la réservation en ligne. Ce montant est immédiatement débité et déclenche l'envoi automatique de la facture par e-mail.</p>
+            </div>
+            <div class="highlight-box">
+                <p><strong>Solde de 50 %</strong> — Payable au moment de la remise des clés, le jour de la prise en charge du véhicule.</p>
+            </div>
+            <p>Les moyens de paiement acceptés sont : carte bancaire (Visa, Mastercard, American Express), virement bancaire, et tout autre moyen convenu préalablement avec King Carluxe.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Tarifs et facturation</div>
+            <p>Les prix affichés sur le site sont exprimés en euros (€) TTC (toutes taxes comprises). Ils incluent :</p>
+            <ul>
+                <li>La mise à disposition du véhicule pour la durée réservée</li>
+                <li>L'assurance tous risques</li>
+                <li>La franchise incluse (zéro caution supplémentaire)</li>
+                <li>La livraison et la reprise du véhicule à l'adresse convenue</li>
+                <li>L'assistance et la conciergerie 24h/7j</li>
+            </ul>
+            <p>Ne sont pas inclus : les frais de carburant, les amendes et infractions au code de la route, les dommages résultant d'une utilisation non conforme aux conditions de location.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Sécurité des paiements</div>
+            <p>Tous les paiements en ligne sont sécurisés par protocole SSL/TLS. King Carluxe ne conserve aucune donnée bancaire du Locataire sur ses serveurs. Les transactions sont traitées par un prestataire de paiement certifié PCI-DSS.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════
+         5. ANNULATION ET MODIFICATION
+    ═══════════════════════════════════════ -->
+    <section class="legal-section" id="annulation">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-times-circle"></i></div>
+            <div>
+                <span class="section-number">Section 05</span>
+                <div class="section-title">Annulation & Modification</div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Annulation par le Locataire</div>
+            <div class="info-grid">
+                <div class="info-cell"><div class="info-cell-label">Plus de 30 jours avant</div><div class="info-cell-value">Remboursement intégral de l'acompte</div></div>
+                <div class="info-cell"><div class="info-cell-label">Entre 15 et 30 jours</div><div class="info-cell-value">50 % de l'acompte remboursé</div></div>
+                <div class="info-cell"><div class="info-cell-label">Entre 7 et 14 jours</div><div class="info-cell-value">25 % de l'acompte remboursé</div></div>
+                <div class="info-cell"><div class="info-cell-label">Moins de 7 jours</div><div class="info-cell-value">Acompte non remboursable</div></div>
+            </div>
+            <p>Toute annulation doit être notifiée par écrit à <strong>contact@kingluxecar.com</strong>. La date de réception de l'e-mail fait foi.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Modification de réservation</div>
+            <p>Toute demande de modification (dates, véhicule, lieu de livraison) doit être effectuée au moins <strong>72 heures</strong> avant la prise en charge, sous réserve de disponibilité. King Carluxe se réserve le droit d'appliquer des frais de modification selon la nature de la demande.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Annulation par King Carluxe</div>
+            <p>En cas d'annulation par King Carluxe (cas de force majeure, indisponibilité imprévisible du véhicule), le Locataire sera remboursé intégralement de l'acompte versé dans un délai de 5 jours ouvrés. King Carluxe s'efforcera de proposer un véhicule de substitution équivalent ou supérieur.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Responsabilité et dommages</div>
+            <p>Le Locataire est responsable de tout dommage causé au véhicule pendant la durée de la location, à l'exception des sinistres pris en charge par l'assurance tous risques incluse. En cas de sinistre, le Locataire s'engage à en informer King Carluxe dans les <strong>24 heures</strong> et à remettre le constat amiable signé.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════
+         6. POLITIQUE DE CONFIDENTIALITÉ
+    ═══════════════════════════════════════ -->
+    <section class="legal-section" id="confidentialite">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-shield-alt"></i></div>
+            <div>
+                <span class="section-number">Section 06</span>
+                <div class="section-title">Politique de Confidentialité</div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Données collectées</div>
+            <p>Dans le cadre de la gestion des réservations et de la relation client, King Carluxe est susceptible de collecter les données personnelles suivantes :</p>
+            <ul>
+                <li>Nom, prénom et date de naissance</li>
+                <li>Adresse e-mail et numéro de téléphone</li>
+                <li>Numéro et validité du permis de conduire</li>
+                <li>Informations de paiement (traitées de manière sécurisée par notre prestataire)</li>
+                <li>Adresse de livraison</li>
+                <li>Historique des locations</li>
+            </ul>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Finalités du traitement</div>
+            <p>Les données collectées sont utilisées exclusivement pour :</p>
+            <ul>
+                <li>La gestion et l'exécution des contrats de location</li>
+                <li>L'envoi de factures et confirmations de réservation par e-mail</li>
+                <li>La prise de contact préalable à la livraison</li>
+                <li>Le respect des obligations légales et réglementaires</li>
+                <li>L'amélioration de la qualité de service (avec votre consentement)</li>
+            </ul>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Base légale et conservation</div>
+            <p>Le traitement des données repose sur l'exécution du contrat de location et le respect des obligations légales de King Carluxe. Les données sont conservées pendant une durée de <strong>5 ans</strong> à compter de la fin de la relation contractuelle, conformément aux obligations comptables et fiscales françaises.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Droits des personnes concernées (RGPD)</div>
+            <p>Conformément au Règlement Général sur la Protection des Données (RGPD — UE 2016/679) et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+            <ul>
+                <li><strong>Droit d'accès</strong> — obtenir une copie des données vous concernant</li>
+                <li><strong>Droit de rectification</strong> — faire corriger des données inexactes</li>
+                <li><strong>Droit à l'effacement</strong> — demander la suppression de vos données</li>
+                <li><strong>Droit à la portabilité</strong> — recevoir vos données dans un format structuré</li>
+                <li><strong>Droit d'opposition</strong> — vous opposer à certains traitements</li>
+            </ul>
+            <p>Pour exercer ces droits, adressez votre demande à : <strong>contact@kingluxecar.com</strong>. King Carluxe s'engage à répondre dans un délai de 30 jours. En cas de litige, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> (www.cnil.fr).</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Partage des données</div>
+            <p>King Carluxe ne vend, ne loue et ne cède aucune donnée personnelle à des tiers. Les données peuvent être partagées uniquement avec des prestataires techniques strictement nécessaires à l'exécution du service (traitement des paiements, hébergement), lesquels sont soumis à des obligations de confidentialité.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════
+         7. COOKIES
+    ═══════════════════════════════════════ -->
+    <section class="legal-section" id="cookies">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-cookie-bite"></i></div>
+            <div>
+                <span class="section-number">Section 07</span>
+                <div class="section-title">Politique de Cookies</div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Utilisation des cookies</div>
+            <p>Le site King Carluxe utilise des cookies strictement nécessaires au fonctionnement du site (session, préférences de langue). Aucun cookie publicitaire ou de tracking tiers n'est déposé sans votre consentement explicite.</p>
+            <div class="info-grid">
+                <div class="info-cell"><div class="info-cell-label">Cookies techniques</div><div class="info-cell-value">Nécessaires au fonctionnement — toujours actifs</div></div>
+                <div class="info-cell"><div class="info-cell-label">Cookies analytiques</div><div class="info-cell-value">Mesure d'audience anonymisée — consentement requis</div></div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Gestion des cookies</div>
+            <p>Vous pouvez à tout moment gérer vos préférences de cookies via les paramètres de votre navigateur ou en nous contactant à <strong>contact@kingluxecar.com</strong>. La désactivation des cookies techniques peut affecter le bon fonctionnement du site.</p>
+        </div>
+
+        <div class="article">
+            <div class="article-title">Droit applicable et litiges</div>
+            <p>Les présentes CGV et mentions légales sont soumises au <strong>droit français</strong>. En cas de litige relatif à l'interprétation ou à l'exécution des présentes, les parties s'engagent à rechercher une solution amiable. À défaut, les tribunaux compétents de <strong>Nice (France)</strong> seront seuls compétents.</p>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <div class="contact-cta">
+        <div class="contact-cta-text">
+            <h3>Une question sur nos conditions ?</h3>
+            <p>Notre équipe est disponible pour vous répondre dans les plus brefs délais.</p>
+        </div>
+        <a href="mailto:contact@kingluxecar.com" class="contact-cta-btn"><i class="fas fa-envelope" style="margin-right:8px"></i>Nous contacter</a>
+    </div>
+
+</div><!-- /legal-wrap -->
+
+<a class="whatsapp-button" href="https://wa.me/33753150620" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section"><h4>King Carluxe</h4><p>Location de supercars et hypercars sur la Côte d'Azur. Ferrari, McLaren, Rolls-Royce — livrés à votre hôtel ou villa.</p></div>
+        <div class="footer-section"><h4>Destinations</h4><a href="cannes.html">Cannes</a><a href="monaco.html">Monaco</a></div>
+        <div class="footer-section"><h4>Contact</h4><a href="tel:+33753150620">+33 7 53 15 06 20</a><a href="mailto:contact@kingluxecar.com">contact@kingluxecar.com</a></div>
+        <div class="footer-section"><h4>Horaires</h4><a href="#">Lun – Ven : 9h – 19h</a><a href="#">Sam/Dim : 10h – 20h</a></div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 King Carluxe · Luxury Car Rental</p>
+        <div style="display:flex;gap:1.5rem"><a href="legal.html">Mentions légales</a><a href="legal.html">CGV</a><a href="legal.html">Confidentialité</a></div>
+    </div>
+</footer>
+
+<script>
+// Mobile menu
+const mobileBtn = document.getElementById('mobileMenuBtn');
+const nav = document.getElementById('mainNav');
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', function() {
+        this.classList.toggle('open');
+        nav.classList.toggle('open');
+    });
+}
+
+// Active TOC link on scroll
+const sections = document.querySelectorAll('.legal-section');
+const tocLinks = document.querySelectorAll('.toc-link');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            tocLinks.forEach(l => l.classList.remove('active'));
+            const id = entry.target.getAttribute('id');
+            const active = document.querySelector(`.toc-link[href="#${id}"]`);
+            if (active) {
+                active.classList.add('active');
+                active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+    });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

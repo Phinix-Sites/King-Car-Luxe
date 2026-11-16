@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation — King Carluxe · Luxury Car Rental</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --navy: #0a1628;
+        --gold: #c9a84c;
+        --gold2: #e8c97a;
+        --text: #1a1a1a;
+        --muted: #666;
+        --border: #e0e0e0;
+        --light-bg: #f7f8fa;
+        --card-bg: #fff;
+        --accent: #1a56db;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; color: var(--text); background: var(--light-bg); line-height: 1.6; }
+
+    /* ── Lang Switcher ── */
+    .language-switcher { position: fixed; top: 18px; right: 18px; z-index: 400; display: flex; gap: 4px; background: rgba(255,255,255,0.95); padding: 4px; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); backdrop-filter: blur(8px); }
+    .lang-btn { padding: 6px 14px; border: 1px solid var(--border); background: white; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px; transition: all 0.25s; color: var(--text); font-family: 'Jost', sans-serif; }
+    .lang-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+    /* ── Header ── */
+    header { background: white; border-bottom: 1px solid var(--border); padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 10px rgba(0,0,0,0.07); }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .logo-icon { color: var(--gold); font-size: 1.4rem; }
+    .logo-line1 { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; line-height: 1; letter-spacing: 3px; text-transform: uppercase; }
+    .logo-line2 { display: block; font-size: 0.62rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); font-weight: 400; }
+    nav { display: flex; gap: 2.5rem; align-items: center; flex: 1; justify-content: center; }
+    nav a { color: var(--text); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: color .25s; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    nav a:hover { color: var(--gold); }
+    nav a:hover::after { width: 100%; }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
+    .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+
+    /* ── Hero ── */
+    .hero { height: 200px; background: linear-gradient(135deg, var(--navy) 0%, #1a3060 100%); display: flex; align-items: center; padding: 0 5%; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 50%; background: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=60") center/cover; opacity: 0.15; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: #fff; line-height: 1; margin-bottom: 6px; }
+    .hero-sub { color: rgba(255,255,255,0.65); font-size: 0.88rem; letter-spacing: 1px; margin-bottom: 12px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* ── Timer bar ── */
+    .timer-bar { background: #fff8e1; border-bottom: 1px solid #ffe082; padding: 12px 5%; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #7a5200; flex-wrap: wrap; }
+    .timer-bar i { color: var(--gold); }
+    .timer-bar strong { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); min-width: 54px; display: inline-block; text-align: center; }
+
+    /* ── Page layout ── */
+    .page-container { max-width: 1200px; margin: 0 auto; padding: 2.5rem 5%; display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start; }
+
+    /* ── Confirm banner ── */
+    .confirm-banner { display: flex; align-items: flex-start; gap: 14px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 16px 20px; margin-bottom: 1.5rem; font-size: 0.88rem; color: #166534; }
+    .confirm-banner i { font-size: 1.5rem; color: #16a34a; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── Section card ── */
+    .section-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .section-header { display: flex; align-items: center; gap: 12px; padding: 18px 24px; border-bottom: 1px solid var(--border); background: #fafafa; }
+    .section-header i { color: var(--gold); font-size: 1.1rem; }
+    .section-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--navy); }
+    .section-body { padding: 24px; }
+
+    /* ── Car summary card ── */
+    .car-card { display: flex; gap: 20px; }
+    .car-img-wrap { flex-shrink: 0; width: 200px; height: 140px; border-radius: 8px; overflow: hidden; position: relative; background: #111; }
+    .car-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .car-type-tag { position: absolute; bottom: 8px; left: 8px; background: rgba(10,22,40,0.85); color: var(--gold); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 600; }
+    .car-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--navy); line-height: 1.1; }
+    .car-model-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 14px; }
+    .car-specs { display: flex; gap: 20px; margin-bottom: 14px; flex-wrap: wrap; }
+    .spec { text-align: center; min-width: 60px; }
+    .spec i { display: block; font-size: 16px; color: var(--gold); margin-bottom: 4px; }
+    .spec-num { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .spec-lbl { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+    .car-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .car-tag { background: #f5f5f5; padding: 4px 10px; border-radius: 20px; font-size: 11px; color: var(--muted); font-weight: 500; }
+    .car-tag i { color: var(--gold); margin-right: 4px; }
+
+    /* ── Gallery ── */
+    .gallery-wrap { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+    .gallery-label { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    .gallery-label i { color: var(--gold); }
+    .gallery-count { background: var(--navy); color: #fff; font-size: 10px; border-radius: 99px; padding: 2px 10px; margin-left: 4px; }
+    .gallery-main { position: relative; border-radius: 8px; overflow: hidden; height: 320px; background: #111; }
+    .gallery-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s; }
+    .gallery-main img.active { opacity: 1; }
+    .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: #fff; border: none; width: 44px; height: 44px; cursor: pointer; font-size: 20px; z-index: 10; transition: background .2s; }
+    .gallery-nav:hover { background: var(--gold); color: var(--navy); }
+    .gallery-nav.prev { left: 0; }
+    .gallery-nav.next { right: 0; }
+    .gal-counter { position: absolute; bottom: 10px; right: 14px; background: rgba(0,0,0,0.55); color: #fff; font-size: 12px; padding: 3px 10px; border-radius: 20px; pointer-events: none; }
+    .gallery-thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
+    .gallery-thumb { width: 72px; height: 52px; border-radius: 5px; overflow: hidden; cursor: pointer; border: 2px solid transparent; flex-shrink: 0; transition: border-color .2s; }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-thumb.active { border-color: var(--gold); }
+
+    /* ── Duration pill ── */
+    .duration-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: #fff; padding: 8px 20px; border-radius: 99px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+    .duration-pill i { color: var(--gold); }
+
+    /* ── Dates grid ── */
+    .dates-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; margin-bottom: 16px; }
+    .date-box { background: var(--light-bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+    .date-box-lbl { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+    .date-box-val { font-size: 1rem; font-weight: 600; color: var(--navy); }
+    .date-box-time { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .date-arrow { text-align: center; font-size: 1.5rem; color: var(--gold); }
+
+    /* ── Form ── */
+    .form-label { display: block; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+    .form-input { width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; font-size: 0.92rem; font-family: 'Jost', sans-serif; color: var(--text); background: #fff; transition: border-color .2s; outline: none; }
+    .form-input:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(10,22,40,0.08); }
+    .form-input[readonly] { background: #f5f5f5; cursor: default; }
+    .form-group { margin-bottom: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-check { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; margin-bottom: 8px; transition: background .2s; font-size: 0.88rem; color: var(--text); }
+    .form-check:hover { background: var(--light-bg); }
+    .form-check input[type="checkbox"] { accent-color: var(--navy); width: 16px; height: 16px; flex-shrink: 0; }
+    .form-check.checked { background: #f0f4ff; border-color: var(--navy); }
+
+    /* ── Price card (right column) ── */
+    .price-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.1); position: sticky; top: 90px; }
+    .price-card-head { background: var(--navy); padding: 24px 24px 20px; color: #fff; }
+    .price-card-head p { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .price-main { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; line-height: 1; }
+    .price-main span { font-size: 1.4rem; opacity: 0.7; }
+    .price-daily { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .price-body { padding: 18px 24px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+    .price-row:last-child { border-bottom: none; }
+    .price-row .lbl { color: var(--muted); }
+    .price-row .val { font-weight: 600; color: var(--navy); }
+    .price-row .green { color: #16a34a; font-weight: 600; font-size: 0.82rem; }
+    .price-total-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: #f8f8f8; border-top: 2px solid var(--border); }
+    .price-total-lbl { font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); }
+    .price-total-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--navy); }
+    .price-deposit { padding: 16px 24px; background: var(--light-bg); border-top: 1px solid var(--border); }
+    .price-deposit-lbl { font-size: 0.72rem; color: var(--muted); text-align: center; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+    .price-deposit-row { display: flex; justify-content: space-between; align-items: center; }
+    .price-deposit-key { font-size: 0.82rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); }
+    .price-deposit-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--accent); }
+
+    /* ── Pay button ── */
+    .pay-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 18px; background: var(--gold); border: none; font-family: 'Jost', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); cursor: pointer; transition: background .25s; }
+    .pay-btn:hover { background: var(--gold2); }
+    .stripe-badge { font-size: 0.72rem; opacity: 0.65; font-weight: 400; letter-spacing: 1px; }
+    .secure-row { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); }
+    .secure-row i { color: #16a34a; }
+
+    /* ── Trust badges ── */
+    .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem; }
+    .trust-item { display: flex; align-items: center; gap: 8px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 0.78rem; color: var(--navy); }
+    .trust-item i { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+
+    /* ── WhatsApp ── */
+    .whatsapp-button { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; text-decoration: none; box-shadow: 0 6px 24px rgba(37,211,102,0.4); z-index: 999; transition: transform .2s; }
+    .whatsapp-button:hover { transform: scale(1.1); }
+
+    /* ── Footer ── */
+    footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 4rem 2.5rem 2rem; margin-top: 4rem; }
+    .footer-content { max-width: 1200px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .footer-section h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 1rem; font-weight: 400; }
+    .footer-section p { font-size: 0.85rem; line-height: 1.8; }
+    .footer-section a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; margin-bottom: 6px; transition: color .2s; }
+    .footer-section a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ── Page loader ── */
+    #pageLoader { display: none; position: fixed; inset: 0; background: rgba(10,22,40,0.97); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
+    .loader-logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); letter-spacing: 4px; }
+    .spinner-ring { width: 50px; height: 50px; border: 3px solid rgba(201,168,76,0.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #pageLoader p { color: rgba(255,255,255,0.6); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+        .page-container { grid-template-columns: 1fr; }
+        .price-card { position: static; }
+    }
+    @media (max-width: 768px) {
+        nav { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #fff; padding: 2rem; gap: 1.5rem; border-top: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        nav.open { display: flex; }
+        .mobile-menu-btn { display: flex; }
+        header { padding: 1rem 1.5rem; position: relative; }
+        .hero { height: 160px; padding: 0 1.5rem; }
+        .hero h1 { font-size: 2rem; }
+        .page-container { padding: 1.5rem; }
+        .car-card { flex-direction: column; }
+        .car-img-wrap { width: 100%; height: 180px; }
+        .form-row { grid-template-columns: 1fr; }
+        .dates-grid { grid-template-columns: 1fr; }
+        .date-arrow { display: none; }
+        .footer-content { grid-template-columns: 1fr 1fr; }
+        .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+
+    /* ═══════════════════════════════════════
+       MOBILE OPTIMIZATIONS (≤ 768px)
+       ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+        .language-switcher { top: 10px; right: 10px; }
+        .hero { height: 140px; padding: 0 1rem; }
+        .hero h1 { font-size: 1.6rem; }
+        .hero-eyebrow { font-size: 0.62rem; letter-spacing: 3px; }
+        .page-container { padding: 1rem; gap: 1.2rem; }
+        .car-card { flex-direction: column; border-radius: 8px; }
+        .car-img-wrap { width: 100%; height: 200px; }
+        .car-details { padding: 1rem; }
+        .car-title { font-size: 1.3rem; }
+        .car-specs-list { flex-wrap: wrap; gap: 8px; }
+        .form-section { padding: 1.2rem; border-radius: 8px; }
+        .form-section-title { font-size: 0.65rem; }
+        .form-row { grid-template-columns: 1fr; gap: 0.8rem; }
+        .dates-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+        .date-arrow { display: none; }
+        .price-card { padding: 1.2rem; border-radius: 8px; }
+        .price-total { font-size: 2rem; }
+        .price-deposit-val { font-size: 1.4rem; }
+        .btn-pay { padding: 15px; font-size: 0.82rem; letter-spacing: 1.5px; }
+        .gallery-wrap { height: 200px; }
+        .footer-content { grid-template-columns: 1fr; gap: 1.2rem; }
+        footer { padding: 2rem 1rem 1rem; }
+        .whatsapp-button { width: 50px; height: 50px; font-size: 1.4rem; bottom: 18px; right: 14px; }
+    }
+    @media (max-width: 420px) {
+        .hero h1 { font-size: 1.35rem; }
+        .price-total { font-size: 1.7rem; }
+    }
+    </style>
+</head>
+<body>
+
+<div class="language-switcher">
+    <button class="lang-btn active" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+</div>
+
+<header>
+    <a href="index.html" class="logo">
+        <i class="fas fa-car logo-icon"></i>
+        <div>
+            <span class="logo-line1">King Carluxe</span>
+            <span class="logo-line2">Luxury Car Rental</span>
+        </div>
+    </a>
+    <nav id="mainNav">
+        <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+        <a href="cannes.html" data-fr="Cannes" data-en="Cannes">Cannes</a>
+        <a href="monaco.html" data-fr="Monaco" data-en="Monaco">Monaco</a>
+        
+    </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</header>
+
+<div class="page-container">
+
+    <!-- LEFT COLUMN -->
+    <div class="left-col">
+
+        <div class="confirm-banner">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <strong data-fr="Réservation immédiate confirmée" data-en="Instant booking confirmed">Réservation immédiate confirmée</strong><br>
+                <span data-fr="Une confirmation par email vous sera envoyée dans les minutes suivant votre paiement." data-en="An email confirmation will be sent within minutes of your payment.">Une confirmation par email vous sera envoyée dans les minutes suivant votre paiement.</span>
+            </div>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap;">
+            <div style="flex:1;min-width:180px;background:#e8f5e9;border:1.5px solid #a5d6a7;border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;">
+                <i class="fas fa-shield-alt" style="color:#2e7d32;font-size:1.5rem;flex-shrink:0"></i>
+                <div>
+                    <div style="font-weight:700;color:#1b5e20;font-size:0.92rem">Franchise 100% Incluse</div>
+                    <div style="font-size:0.78rem;color:#388e3c;margin-top:2px">Aucun supplément · Prix final garanti</div>
+                </div>
+            </div>
+            <div style="flex:1;min-width:180px;background:#e3f2fd;border:1.5px solid #90caf9;border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;">
+                <i class="fas fa-lock-open" style="color:#1565c0;font-size:1.5rem;flex-shrink:0"></i>
+                <div>
+                    <div style="font-weight:700;color:#0d47a1;font-size:0.92rem">Zéro Caution</div>
+                    <div style="font-size:0.78rem;color:#1976d2;margin-top:2px">Aucun dépôt de garantie requis</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Car summary -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-car"></i>
+                <h3 data-fr="Votre Véhicule Sélectionné" data-en="Your Selected Vehicle">Votre Véhicule Sélectionné</h3>
+            </div>
+            <div class="section-body">
+                <div class="car-card">
+                    <div class="car-img-wrap">
+                        <img id="carImg" src="" alt="Véhicule">
+                        <span class="car-type-tag" id="carTypeBadge">Supercar</span>
+                    </div>
+                    <div>
+                        <div class="car-name" id="carName">—</div>
+                        <div class="car-model-sub" id="carModelSub">—</div>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <i class="fas fa-bolt"></i>
+                                <div class="spec-num" id="specHp">—</div>
+                                <div class="spec-lbl" data-fr="Chevaux" data-en="HP">Chevaux</div>
+                            </div>
+                            <div class="spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <div class="spec-num" id="specSpeed">—</div>
+                                <div class="spec-lbl" data-fr="Km/h max" data-en="Max km/h">Km/h max</div>
+                            </div>
+                            <div class="spec">
+                                <i class="fas fa-user-friends"></i>
+                                <div class="spec-num" id="specSeats">—</div>
+                                <div class="spec-lbl" data-fr="Passagers" data-en="Passengers">Passagers</div>
+                            </div>
+                            <div class="spec">
+                                <i class="fas fa-shield-alt"></i>
+                                <div class="spec-num" style="font-size:1rem;">✓</div>
+                                <div class="spec-lbl" data-fr="Assurance" data-en="Insurance">Assurance</div>
+                            </div>
+                        </div>
+                        <div class="car-tags">
+                            <span class="car-tag"><i class="fas fa-shield-alt"></i><span data-fr="Assurance incluse" data-en="Insurance included">Assurance incluse</span></span>
+                            <span class="car-tag"><i class="fas fa-concierge-bell"></i><span data-fr="Livraison à domicile" data-en="Home delivery">Livraison à domicile</span></span>
+                            <span class="car-tag"><i class="fas fa-ban"></i><span data-fr="Annulation flexible" data-en="Flexible cancellation">Annulation flexible</span></span>
+                            <span class="car-tag"><i class="fas fa-star" style="color:var(--gold);"></i><span data-fr="Service premium" data-en="Premium service">Service premium</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery -->
+            </div>
+        </div>
+
+        <!-- Dates & Location -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-calendar-alt"></i>
+                <h3 data-fr="Période &amp; Lieu de Prise en Charge" data-en="Rental Period &amp; Pickup Location">Période &amp; Lieu de Prise en Charge</h3>
+            </div>
+            <div class="section-body">
+                <div class="duration-pill">
+                    <i class="fas fa-moon"></i>
+                    <span id="durationLabel">0 jour(s)</span>
+                </div>
+                <div class="dates-grid">
+                    <div class="date-box">
+                        <div class="date-box-lbl" data-fr="Prise en charge" data-en="Pickup">Prise en charge</div>
+                        <div class="date-box-val" id="checkInDisplay">—</div>
+                        <div class="date-box-time" id="checkInTime"></div>
+                    </div>
+                    <div class="date-arrow">→</div>
+                    <div class="date-box">
+                        <div class="date-box-lbl" data-fr="Restitution" data-en="Return">Restitution</div>
+                        <div class="date-box-val" id="checkOutDisplay">—</div>
+                        <div class="date-box-time" id="checkOutTime"></div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label class="form-label" data-fr="LIEU DE PRISE EN CHARGE" data-en="PICKUP LOCATION">LIEU DE PRISE EN CHARGE</label>
+                    <input type="text" class="form-input" id="pickupDisplay" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation form -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-user"></i>
+                <h3 data-fr="Informations du Locataire" data-en="Renter Information">Informations du Locataire</h3>
+            </div>
+            <div class="section-body">
+                <form id="reservationForm" onsubmit="return false;">
+
+                    <input type="hidden" id="hCarName">
+                    <input type="hidden" id="hCarModel">
+                    <input type="hidden" id="hCarType">
+                    <input type="hidden" id="hPrice">
+                    <input type="hidden" id="hDays">
+                    <input type="hidden" id="hCheckIn">
+                    <input type="hidden" id="hCheckOut">
+                    <input type="hidden" id="hPickup">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" data-fr="PRÉNOM" data-en="FIRST NAME">PRÉNOM</label>
+                            <input type="text" name="prenom" class="form-input" required placeholder="Jean">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-fr="NOM DE FAMILLE" data-en="LAST NAME">NOM DE FAMILLE</label>
+                            <input type="text" name="nom" class="form-input" required placeholder="Dupont">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-fr="ADRESSE EMAIL" data-en="EMAIL ADDRESS">ADRESSE EMAIL</label>
+                        <input type="email" name="email" class="form-input" required placeholder="jean.dupont@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-fr="TÉLÉPHONE / WHATSAPP" data-en="PHONE / WHATSAPP">TÉLÉPHONE / WHATSAPP</label>
+                        <input type="tel" name="telephone" class="form-input" required placeholder="+33 6 00 00 00 00">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" data-fr="NATIONALITÉ" data-en="NATIONALITY">NATIONALITÉ</label>
+                            <input type="text" name="nationalite" class="form-input" placeholder="Française">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-fr="N° PERMIS DE CONDUIRE" data-en="DRIVER'S LICENSE #">N° PERMIS DE CONDUIRE</label>
+                            <input type="text" name="permis" class="form-input" required placeholder="75AB12345">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-fr="DEMANDES SPÉCIALES (OPTIONNEL)" data-en="SPECIAL REQUESTS (OPTIONAL)">DEMANDES SPÉCIALES (OPTIONNEL)</label>
+                        <textarea name="demandes" class="form-input" rows="3" placeholder="Siège enfant, livraison à l'hôtel, carnet de route, occasions spéciales..." style="resize:vertical;"></textarea>
+                    </div>
+
+                    <div style="border-top:1px solid var(--border);padding-top:1.2rem;margin-top:0.5rem;">
+                        <p style="font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;" data-fr="SERVICES OPTIONNELS" data-en="OPTIONAL SERVICES">SERVICES OPTIONNELS</p>
+                        <label class="form-check">
+                            <input type="checkbox" name="chauffeur">
+                            <span data-fr="Chauffeur privé (tarif journalier sur devis)" data-en="Private chauffeur (daily rate on request)">Chauffeur privé (tarif journalier sur devis)</span>
+                        </label>
+                        <label class="form-check">
+                            <input type="checkbox" name="transfert">
+                            <span data-fr="Transfert aéroport / hôtel inclus" data-en="Airport / hotel transfer included">Transfert aéroport / hôtel inclus</span>
+                        </label>
+                        <label class="form-check">
+                            <input type="checkbox" name="photographer">
+                            <span data-fr="Photographe professionnel (shooting avec le véhicule)" data-en="Professional photographer (vehicle shooting)">Photographe professionnel (shooting avec le véhicule)</span>
+                        </label>
+                    </div>
+
+                    <div style="background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:1rem;margin-top:1.2rem;font-size:0.82rem;color:#92400e;">
+                        <i class="fas fa-info-circle" style="margin-right:6px;"></i>
+                        <span data-fr="En confirmant cette réservation, vous acceptez nos Conditions Générales de Location et notre Politique d'Annulation. Un acompte de 50% est requis à la réservation. Le permis de conduire sera vérifié à la remise des clés." data-en="By confirming this booking, you agree to our Terms & Conditions and Cancellation Policy. A 50% deposit is required at booking. Driver's license will be verified at key handover.">
+                            En confirmant cette réservation, vous acceptez nos Conditions Générales de Location et notre Politique d'Annulation. Un acompte de 50% est requis à la réservation. Le permis de conduire sera vérifié à la remise des clés.
+                        </span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /left-col -->
+
+    <!-- RIGHT COLUMN — Price summary -->
+    <div class="right-col">
+
+        <div class="price-card">
+            <div class="price-card-head">
+                <p data-fr="TOTAL DE VOTRE LOCATION" data-en="YOUR RENTAL TOTAL">TOTAL DE VOTRE LOCATION</p>
+                <div class="price-main" id="sidePriceMain">— <span>€</span></div>
+                <div class="price-daily" id="sidePriceDaily"></div>
+            </div>
+            <div class="price-body">
+                <div class="price-row">
+                    <span class="lbl" data-fr="Véhicule sélectionné" data-en="Selected vehicle">Véhicule sélectionné</span>
+                    <span class="val" id="sideCarName" style="font-size:0.82rem;text-align:right;max-width:160px;">—</span>
+                </div>
+                <div class="price-row">
+                    <span class="lbl" data-fr="Durée" data-en="Duration">Durée</span>
+                    <span class="val" id="sideDuration">—</span>
+                </div>
+                <div class="price-row">
+                    <span class="lbl" data-fr="Lieu de prise en charge" data-en="Pickup location">Lieu de prise en charge</span>
+                    <span class="val" id="sidePickup" style="font-size:0.82rem;text-align:right;max-width:160px;">—</span>
+                </div>
+                <div class="price-row">
+                    <span class="lbl" data-fr="Assurance tous risques" data-en="Full insurance">Assurance tous risques</span>
+                    <span class="val green">Incluse</span>
+                </div>
+                <div class="price-row" style="background:#e8f5e9;border-radius:4px;padding:8px 10px;margin:4px 0;">
+                    <span class="lbl" style="color:#1b5e20;font-weight:700;"><i class="fas fa-shield-alt" style="color:#2e7d32;margin-right:5px"></i>Franchise</span>
+                    <span class="val" style="color:#2e7d32;font-weight:700;">100% Incluse</span>
+                </div>
+                <div class="price-row" style="background:#e3f2fd;border-radius:4px;padding:8px 10px;margin:4px 0;">
+                    <span class="lbl" style="color:#0d47a1;font-weight:700;"><i class="fas fa-lock-open" style="color:#1565c0;margin-right:5px"></i>Caution</span>
+                    <span class="val" style="color:#1565c0;font-weight:700;">0 € requis</span>
+                </div>
+                <div class="price-row">
+                    <span class="lbl" data-fr="Livraison & reprise" data-en="Delivery & pickup">Livraison & reprise</span>
+                    <span class="val green">Incluse</span>
+                </div>
+                <div class="price-row">
+                    <span class="lbl" data-fr="Carburant" data-en="Fuel">Carburant</span>
+                    <span class="val" style="font-size:0.8rem;color:var(--muted);" data-fr="Non inclus" data-en="Not included">Non inclus</span>
+                </div>
+            </div>
+            <div class="price-total-row">
+                <span class="price-total-lbl" data-fr="Total" data-en="Total">Total</span>
+                <span class="price-total-val" id="sideTotal">— €</span>
+            </div>
+            <div class="price-deposit">
+                <p class="price-deposit-lbl" data-fr="Acompte requis à la réservation (50%)" data-en="Deposit required at booking (50%)">Acompte requis à la réservation (50%)</p>
+                <div class="price-deposit-row">
+                    <span class="price-deposit-key" data-fr="Acompte aujourd'hui" data-en="Deposit today">Acompte aujourd'hui</span>
+                    <span class="price-deposit-val" id="sideDeposit">— €</span>
+                </div>
+            </div>
+            <button class="pay-btn" id="payButton" type="button">
+                <i class="fas fa-lock"></i>
+                <span data-fr="Réserver &amp; Payer" data-en="Book &amp; Pay">Réserver &amp; Payer</span>
+                <span class="stripe-badge">· Stripe</span>
+            </button>
+            <div class="secure-row">
+                <i class="fas fa-shield-alt"></i>
+                <span data-fr="Paiement 100% sécurisé · SSL · Stripe" data-en="100% Secure payment · SSL · Stripe">Paiement 100% sécurisé · SSL · Stripe</span>
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 16px;margin-top:12px;font-size:0.8rem;color:#166534;line-height:1.7;text-align:center;">
+                <strong>✓ Franchise 100% incluse dans ce prix</strong><br>
+                <strong>✓ Zéro caution — aucun dépôt de garantie</strong><br>
+                <span style="color:#555">Le prix affiché est le prix final. Aucune surprise à la remise des clés.</span>
+            </div>
+        </div>
+
+        <div class="trust-grid">
+            <div class="trust-item">
+                <i class="fas fa-shield-alt" style="color:#2e7d32"></i>
+                <span data-fr="Franchise incluse" data-en="Excess included">Franchise incluse</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-lock-open" style="color:#1565c0"></i>
+                <span data-fr="Zéro caution" data-en="Zero deposit">Zéro caution</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-headset"></i>
+                <span data-fr="Support 24/7" data-en="24/7 Support">Support 24/7</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-undo"></i>
+                <span data-fr="Annulation flexible" data-en="Flexible cancellation">Annulation flexible</span>
+            </div>
+        </div>
+
+    </div><!-- /right-col -->
+
+</div><!-- /page-container -->
+
+<a href="https://wa.me/33753150620" target="_blank" class="whatsapp-button">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>King Carluxe</h4>
+            <p>Location de voitures de luxe à Cannes et Monaco . Ferrari, Lamborghini, Rolls-Royce — livrés à votre hôtel.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Destinations</h4>
+            <a href="cannes.html">Cannes</a>
+            <a href="monaco.html">Monaco</a>
+           
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <a href="tel:+33753150620">+33 7 53 15 06 20</a>
+            <a href="mailto:contact@kingcarluxe.com">contact@kingcarluxe.com</a>
+        </div>
+        <div class="footer-section">
+            <h4>Horaires</h4>
+            <a href="#">Lun – Ven : 9h – 19h</a>
+            <a href="#">Sam/Dim : 10h – 20h</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 King Carluxe · Luxury Car Rental</p>
+        <div style="display:flex;gap:1.5rem;"><a href="#">Mentions légales</a><a href="#">CGV</a></div>
+    </div>
+</footer>
+
+<div id="pageLoader">
+    <div class="loader-logo"><i class="fas fa-car"></i> King Carluxe</div>
+    <div class="spinner-ring"></div>
+    <p data-fr="Redirection vers le paiement sécurisé…" data-en="Redirecting to secure payment…">Redirection vers le paiement sécurisé…</p>
+</div>
+
+<script>
+/* ── King Carluxe · reserva.html ── */
+function kcInitReserva() {
+
+    // 1. URL params
+    const params    = new URLSearchParams(window.location.search);
+    const pCar      = params.get('car')             ? decodeURIComponent(params.get('car'))             : '';
+    const pModel    = params.get('boatModel')        ? decodeURIComponent(params.get('boatModel'))        : '';
+    const pType     = params.get('boatType')         ? decodeURIComponent(params.get('boatType'))         : '';
+    const pPrice    = parseFloat(params.get('price')    || '0');
+    const pPriceDay = parseFloat(params.get('priceDay') || '0');
+    const pDays     = parseInt(params.get('days')       || '0');
+    const pHp       = params.get('hp')              ? decodeURIComponent(params.get('hp'))              : '';
+    const pSpeed    = params.get('speed')           ? decodeURIComponent(params.get('speed'))           : '';
+    const pSeats    = params.get('guests')          ? decodeURIComponent(params.get('guests'))          : '';
+    const pCheckIn  = params.get('checkIn')         ? decodeURIComponent(params.get('checkIn'))         : '';
+    const pCheckOut = params.get('checkOut')        ? decodeURIComponent(params.get('checkOut'))        : '';
+    const pPickup   = params.get('pickupLocation')  ? decodeURIComponent(params.get('pickupLocation'))  : '';
+    const pImg      = params.get('carImage')        ? decodeURIComponent(params.get('carImage'))        : '';
+
+    // helpers
+    function setText(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = (val !== undefined && val !== null && val !== '') ? String(val) : '—';
+    }
+    function setVal(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.value = (val !== undefined && val !== null) ? String(val) : '';
+    }
+    function fmtEur(n) {
+        if (!n || isNaN(n) || n === 0) return '— €';
+        return n.toLocaleString('fr-FR', { style:'currency', currency:'EUR', maximumFractionDigits:0 });
+    }
+    function fmtDate(str) {
+        if (!str) return '—';
+        const d = new Date(str);
+        if (isNaN(d)) return str;
+        return d.toLocaleDateString('fr-FR', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
+    }
+
+    // 2. Hidden fields
+    setVal('hCarName',  pCar);
+    setVal('hCarModel', pModel);
+    setVal('hCarType',  pType);
+    setVal('hPrice',    pPrice);
+    setVal('hDays',     pDays);
+    setVal('hCheckIn',  pCheckIn);
+    setVal('hCheckOut', pCheckOut);
+    setVal('hPickup',   pPickup);
+
+    // 3. Car card
+    if (pImg) {
+        const imgEl = document.getElementById('carImg');
+        if (imgEl) { imgEl.src = pImg; imgEl.onerror = function(){ imgEl.style.display='none'; }; }
+    }
+    setText('carName',     pCar   || '—');
+    setText('carModelSub', pModel || '—');
+    setText('carTypeBadge', pType  || 'Voiture');
+    setText('specHp',    pHp    ? pHp + ' ch' : '—');
+    setText('specSpeed', pSpeed ? pSpeed + ' km/h' : '—');
+    setText('specSeats', pSeats || '—');
+
+    // 4. Dates
+    setText('checkInDisplay',  fmtDate(pCheckIn));
+    setText('checkOutDisplay', fmtDate(pCheckOut));
+    setText('durationLabel', pDays > 0 ? pDays + ' jour' + (pDays > 1 ? 's' : '') + ' de location' : 'Durée non définie');
+    if (pPickup) { const el = document.getElementById('pickupDisplay'); if (el) el.value = pPickup; }
+
+    // 5. Prices
+    const deposit   = pPrice * 0.50;
+    const dailyRate = pPriceDay > 0 ? pPriceDay : (pDays > 0 && pPrice > 0 ? pPrice / pDays : 0);
+
+    const priceMainEl = document.getElementById('sidePriceMain');
+    if (priceMainEl) {
+        priceMainEl.innerHTML = pPrice > 0
+            ? pPrice.toLocaleString('fr-FR', {maximumFractionDigits:0}) + ' <span>€</span>'
+            : '— <span>€</span>';
+    }
+    const dailyEl = document.getElementById('sidePriceDaily');
+    if (dailyEl) dailyEl.textContent = dailyRate > 0 ? fmtEur(dailyRate) + ' / jour' : '';
+
+    setText('sideCarName',  pCar    || '—');
+    setText('sideDuration', pDays > 0 ? pDays + ' j.' : '—');
+    setText('sidePickup',   pPickup || '—');
+    setText('sideTotal',    pPrice > 0 ? fmtEur(pPrice)   : '— €');
+    setText('sideDeposit',  pPrice > 0 ? fmtEur(deposit) : '— €');
+
+    // 6. Gallery from sessionStorage
+    (function buildGallery() {
+        let stored = null;
+        try { stored = JSON.parse(sessionStorage.getItem('kc_booking') || 'null'); } catch(e) {}
+
+        const images = (stored && Array.isArray(stored.allImages) && stored.allImages.length)
+            ? stored.allImages
+            : (pImg ? [pImg] : []);
+
+        if (!images.length) return;
+
+        const wrap     = document.getElementById('galleryWrap');
+        const main     = document.getElementById('galleryMain');
+        const thumbsC  = document.getElementById('galleryThumbs');
+        const counter  = document.getElementById('galCounter');
+        const countLbl = document.getElementById('galleryCount');
+        const prevBtn  = document.getElementById('galPrev');
+        const nextBtn  = document.getElementById('galNext');
+
+        if (!wrap || !main) return;
+
+        wrap.style.display = 'block';
+        if (countLbl) countLbl.textContent = images.length + ' photo' + (images.length > 1 ? 's' : '');
+
+        let current = 0;
+        const mainImgs = [];
+
+        images.forEach(function(src, i) {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = pCar + ' photo ' + (i + 1);
+            if (i === 0) img.classList.add('active');
+            main.insertBefore(img, prevBtn || main.firstChild);
+            mainImgs.push(img);
+
+            if (thumbsC) {
+                const thumb = document.createElement('div');
+                thumb.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+                const tImg = document.createElement('img');
+                tImg.src = src; tImg.alt = '';
+                thumb.appendChild(tImg);
+                thumb.addEventListener('click', (function(idx){ return function(){ goTo(idx); }; })(i));
+                thumbsC.appendChild(thumb);
+            }
+        });
+
+        const thumbEls = thumbsC ? thumbsC.querySelectorAll('.gallery-thumb') : [];
+        if (counter) counter.textContent = '1 / ' + images.length;
+
+        function goTo(n) {
+            mainImgs[current].classList.remove('active');
+            if (thumbEls[current]) thumbEls[current].classList.remove('active');
+            current = (n + images.length) % images.length;
+            mainImgs[current].classList.add('active');
+            if (thumbEls[current]) { thumbEls[current].classList.add('active'); thumbEls[current].scrollIntoView({ behavior:'smooth', inline:'nearest', block:'nearest' }); }
+            if (counter) counter.textContent = (current + 1) + ' / ' + images.length;
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', function(){ goTo(current + 1); });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft')  goTo(current - 1);
+            if (e.key === 'ArrowRight') goTo(current + 1);
+        });
+    })();
+
+    // 7. Timer
+    const TIMER_KEY = 'kcTimerEnd';
+    let endTime = parseInt(localStorage.getItem(TIMER_KEY) || '0');
+    if (!endTime || endTime < Date.now()) {
+        endTime = Date.now() + 10 * 60 * 1000;
+        localStorage.setItem(TIMER_KEY, endTime);
+    }
+    const timerEl = document.getElementById('timerCount');
+    function tick() {
+        const diff = endTime - Date.now();
+        if (diff <= 0) {
+            if (timerEl) timerEl.textContent = '00:00';
+            localStorage.removeItem(TIMER_KEY);
+            return;
+        }
+        const m = Math.floor(diff / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        if (timerEl) timerEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        setTimeout(tick, 1000);
+    }
+    tick();
+
+    // 8. Language switcher
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const lang = this.dataset.lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
+                const val = el.getAttribute('data-' + lang);
+                if (!val) return;
+                if (el.tagName === 'OPTION') { el.textContent = val; return; }
+                if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
+                    el.childNodes[0].textContent = val;
+                } else if (!el.querySelector('i') && !el.querySelector('img')) {
+                    el.textContent = val;
+                }
+            });
+        });
+    });
+
+    // 9. Mobile menu
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const nav = document.getElementById('mainNav');
+    if (mobileBtn) { mobileBtn.addEventListener('click', function() { this.classList.toggle('open'); nav.classList.toggle('open'); }); }
+
+    // 10. Checkbox styling
+    document.querySelectorAll('.form-check input[type="checkbox"]').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+            this.closest('.form-check').classList.toggle('checked', this.checked);
+        });
+    });
+
+    // 11. Stripe payment via create-payment.php — acompte 50%
+    const payBtn = document.getElementById('payButton');
+    if (payBtn) payBtn.addEventListener('click', async function() {
+        const form   = document.getElementById('reservationForm');
+        const prenom = form.querySelector('[name="prenom"]').value.trim();
+        const nom    = form.querySelector('[name="nom"]').value.trim();
+        const email  = form.querySelector('[name="email"]').value.trim();
+        const tel    = form.querySelector('[name="telephone"]').value.trim();
+        const permis = form.querySelector('[name="permis"]').value.trim();
+
+        if (!prenom || !nom || !email || !tel || !permis) {
+            alert('Veuillez remplir tous les champs obligatoires (Prénom, Nom, Email, Téléphone, N° Permis).');
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            alert('Veuillez entrer une adresse email valide.');
+            return;
+        }
+        if (!pCar) {
+            alert('Véhicule non identifié. Veuillez revenir sur la page Cannes ou Monaco et cliquer sur Réserver.');
+            return;
+        }
+
+        // Calcul robuste du prix — plusieurs fallbacks
+        const jours    = pDays > 0 ? pDays : 1;
+        const priceDay = pPriceDay > 0 ? pPriceDay : (pPrice > 0 ? Math.round(pPrice / jours) : 0);
+        const total    = pPrice > 0 ? pPrice : (priceDay * jours);
+        const deposit  = total > 0 ? Math.round(total * 0.50) : Math.round(priceDay * 0.50);
+
+        if (priceDay <= 0 && total <= 0) {
+            alert('Prix du véhicule introuvable. Veuillez revenir sur la page Cannes ou Monaco et réessayer.');
+            return;
+        }
+
+        const loader = document.getElementById('pageLoader');
+        if (loader) loader.style.display = 'flex';
+        payBtn.disabled = true;
+        payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion à Stripe…';
+
+        try {
+            const res = await fetch('create-payment.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    car:          pCar,
+                    destination:  pPickup || 'Cannes / Monaco',
+                    date_debut:   pCheckIn  || '',
+                    date_fin:     pCheckOut || '',
+                    jours:        jours,
+                    prix_jour:    priceDay,
+                    client_nom:   prenom + ' ' + nom,
+                    client_email: email,
+                    client_tel:   tel,
+                    car_img:      pImg || '',
+                    options:      'N° Permis: ' + permis,
+                    acompte:      deposit
+                })
+            });
+
+            // Lire le texte brut d'abord pour debug
+            const text = await res.text();
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch(parseErr) {
+                throw new Error('Réponse serveur illisible: ' + text.substring(0, 200));
+            }
+
+            if (data && data.url) {
+                window.location.href = data.url;
+            } else {
+                throw new Error(data.error || 'URL Stripe non reçue');
+            }
+        } catch(e) {
+            if (loader) loader.style.display = 'none';
+            payBtn.disabled = false;
+            payBtn.innerHTML = '<i class="fas fa-lock"></i> <span>Réserver &amp; Payer</span> <span class="stripe-badge">· Stripe</span>';
+            alert('Erreur de paiement : ' + e.message + '\n\nContactez-nous via WhatsApp : +33 7 53 15 06 20');
+        }
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', kcInitReserva);
+} else {
+    kcInitReserva();
+}
+</script>
+</body>
+</html>

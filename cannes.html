@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Voitures de Luxe Cannes — King Carluxe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --navy: #0a1628; --navy2: #0f1f2e; --gold: #c9a84c; --gold2: #e8c97a;
+        --text: #1a1a1a; --muted: #666; --border: #e0e0e0; --accent: #1a56db;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; }
+
+    /* LANG */
+    .language-switcher { position: fixed; top: 18px; right: 18px; z-index: 400; display: flex; gap: 4px; background: rgba(255,255,255,0.95); padding: 4px; border-radius: 6px; box-shadow: 0 2px 14px rgba(0,0,0,0.14); backdrop-filter: blur(10px); }
+    .lang-btn { padding: 5px 13px; border: 1px solid var(--border); background: transparent; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 0.78rem; letter-spacing: 1px; transition: all .22s; color: var(--text); font-family: 'Jost', sans-serif; }
+    .lang-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .lang-btn:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
+    /* HEADER */
+    header { background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--border); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 300; box-shadow: 0 1px 12px rgba(0,0,0,0.07); backdrop-filter: blur(12px); }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .logo-icon { color: var(--gold); font-size: 1.4rem; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-line1 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; line-height: 1; }
+    .logo-line2 { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-top: 2px; }
+    nav { display: flex; gap: 2.5rem; align-items: center; flex: 1; justify-content: center; }
+    nav a { color: var(--text); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 1.8px; text-transform: uppercase; transition: color .25s; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    nav a:hover { color: var(--gold); }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--gold); }
+    nav a.active::after { width: 100%; }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
+    .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    /* HERO */
+    .hero { height: 55vh; min-height: 360px; position: relative; display: flex; align-items: flex-end; justify-content: flex-start; overflow: hidden; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.3) 60%, rgba(10,22,40,0.6) 100%); z-index: 2; }
+    .hero-content { position: relative; z-index: 3; padding: 2.5rem 3rem; color: #fff; max-width: 560px; }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; display: block; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1.1; margin-bottom: 0.8rem; }
+    .hero-sub { font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.2rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-tag { padding: 6px 16px; background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.4); color: var(--gold); border-radius: 3px; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* FILTERS */
+    .filter-toggle-btn { display: none; }
+    .filters-section { padding: 0.9rem 2.5rem; background: var(--navy); position: sticky; top: 73px; z-index: 200; }
+    .filters-collapse { display: block; }
+    .filters-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: stretch; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+    .filter-group { flex: 1; padding: 0.55rem 1.2rem; border-right: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 4px; }
+    .filter-group:last-of-type { border-right: none; }
+    .filter-label { font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; }
+    .filter-date { background: transparent; border: none; color: #fff; font-size: 0.82rem; font-family: 'Jost', sans-serif; font-weight: 400; cursor: pointer; width: 100%; }
+    .filter-date::-webkit-calendar-picker-indicator { filter: invert(1) opacity(0.5); cursor: pointer; }
+    .filter-select { background: transparent; border: none; color: #fff; font-size: 0.82rem; font-family: 'Jost', sans-serif; cursor: pointer; outline: none; width: 100%; }
+    .filter-select option { background: var(--navy); color: #fff; }
+    .btn-submit { padding: 0 1.8rem; background: var(--gold); color: var(--navy); border: none; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background .25s; min-width: 140px; }
+    .btn-submit:hover { background: var(--gold2); }
+
+    /* TICKER */
+    .rental-ticker { overflow: hidden; background: var(--gold); padding: 0; display: flex; white-space: nowrap; }
+    .rental-ticker-group { display: flex; animation: tickerScroll 18s linear infinite; }
+    .rental-ticker-item { display: flex; align-items: center; gap: 14px; padding: 10px 50px; }
+    .rental-badge { background: var(--navy); color: var(--gold); font-weight: 700; border-radius: 999px; padding: 5px 14px; font-size: 14px; }
+    .rental-ticker-text { font-size: 14px; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; }
+    @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* CATEGORY BAR */
+    .category-bar { display: flex; flex-wrap: wrap; gap: 8px; padding: 1.5rem 2.5rem; max-width: 1440px; margin: 0 auto; }
+    .cat-btn { padding: 6px 18px; border: 1px solid var(--border); border-radius: 20px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: white; color: var(--navy); transition: all 0.2s; }
+    .cat-btn.active, .cat-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+
+    /* RESULTS BAR */
+    .guarantee-bar { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 0.55rem 2.5rem; background: #f0faf4; border-bottom: 1px solid #c3e6cb; font-size: 0.78rem; font-weight: 600; color: #1a6b38; letter-spacing: 0.5px; flex-wrap: wrap; }
+    .guarantee-bar span { display: flex; align-items: center; gap: 6px; }
+    .results-bar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; border-bottom: 1px solid var(--border); background: #fafafa; }
+    .results-count { font-size: 0.85rem; color: var(--muted); }
+    .results-count strong { color: var(--navy); }
+    .results-sort { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--muted); }
+    .sort-select { border: 1px solid var(--border); border-radius: 4px; padding: 4px 8px; font-family: 'Jost', sans-serif; font-size: 0.82rem; cursor: pointer; background: #fff; color: var(--text); }
+
+    /* CARS SECTION */
+    .cars-section { padding: 32px 5%; background: #f5f5f5; }
+    .cars-container { max-width: 1100px; margin: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+
+    /* CAR CARD */
+    .car-card { display: grid; grid-template-columns: 55% 45%; max-width: 1100px; margin: 0 auto; width: 100%; background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e5e5e5; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all .3s ease; }
+    .car-card:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(0,0,0,0.13); }
+
+    /* IMAGE */
+    .car-image { position: relative; height: 320px; background: #0c1f3f; overflow: hidden; }
+    .car-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity .4s; }
+    .car-image img.active { opacity: 1; }
+    .slide-prev, .slide-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: white; border: none; width: 48px; height: 48px; cursor: pointer; font-size: 22px; z-index: 10; transition: background .2s; }
+    .slide-prev:hover, .slide-next:hover { background: var(--gold); color: var(--navy); }
+    .slide-prev { left: 0; }
+    .slide-next { right: 0; }
+    .car-type-badge { position: absolute; bottom: 20px; left: 20px; background: rgba(10,22,40,0.85); color: var(--gold); font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 3px; font-weight: 600; }
+    .car-badge { position: absolute; top: 16px; left: 16px; background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 3px; z-index: 5; }
+    .car-favorite { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.9); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 16px; transition: all .2s; z-index: 5; }
+    .car-favorite:hover { background: #fff; transform: scale(1.1); }
+    .car-favorite.active i { color: #e74c3c; font-weight: 900; }
+    .car-photo-count { position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.6); color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 3px; display: flex; align-items: center; gap: 5px; }
+
+    /* INFO PANEL */
+    .car-info { padding: 28px 30px; display: flex; flex-direction: column; justify-content: center; background: #fff; }
+    .car-name { font-size: 24px; font-family: 'Cormorant Garamond', serif; margin-bottom: 4px; color: var(--navy); font-weight: 400; }
+    .car-model { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
+    .car-price-wrap { margin-bottom: 20px; }
+    .car-price-total { font-size: 22px; font-weight: 700; color: var(--navy); }
+    .car-price-detail { font-size: 14px; color: var(--muted); margin-left: 6px; }
+    .car-price-daily { font-size: 13px; color: #999; margin-top: 3px; }
+    .car-price-competitor { font-size: 12px; color: #aaa; text-decoration: line-through; margin-top: 2px; }
+    .car-price-save { display: inline-block; background: #dcfce7; color: #16a34a; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 3px; margin-top: 6px; }
+    .car-price-our-label { font-size: 11px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+
+    hr { border: none; border-top: 1px solid #eee; margin: 18px 0; }
+    .car-specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+    .spec-item { text-align: center; }
+    .spec-item i { color: var(--gold); font-size: 18px; margin-bottom: 6px; display: block; }
+    .spec-label { font-size: 18px; font-weight: 700; color: var(--navy); }
+    .spec-value { font-size: 11px; letter-spacing: 1.5px; color: #888; text-transform: uppercase; }
+    .car-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+    .car-tag { background: #f0f4ff; color: var(--navy); font-size: 11px; padding: 5px 12px; border-radius: 3px; font-weight: 500; letter-spacing: 0.5px; }
+    .car-btn { width: 100%; background: var(--navy); color: white; border: none; padding: 14px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all .3s; font-family: 'Jost', sans-serif; font-weight: 600; border-radius: 3px; }
+    .car-btn:hover { background: var(--gold); color: var(--navy); }
+    .car-info-btn { display: flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; padding: 8px 14px; border-radius: 3px; transition: all .2s; margin-bottom: 10px; width: fit-content; }
+    .car-info-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* MODAL */
+    .flying-modal { display: none; position: fixed; inset: 0; background: rgba(10,22,40,0.75); z-index: 1000; overflow-y: auto; backdrop-filter: blur(4px); }
+    .flying-modal.open { display: flex; align-items: flex-start; justify-content: center; }
+    .flying-modal-content { background: white; width: 90%; max-width: 760px; margin: 60px auto; padding: 3rem; border-radius: 12px; position: relative; }
+    .flying-modal .close { position: absolute; top: 18px; right: 22px; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--muted); line-height: 1; transition: color .2s; }
+    .flying-modal .close:hover { color: var(--navy); }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--navy); margin-bottom: 1.5rem; }
+    .modal-description { font-size: 0.9rem; color: var(--muted); line-height: 1.9; margin-bottom: 2rem; white-space: pre-line; }
+    .modal-section-title { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
+    .modal-features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
+    .modal-feature { background: #f0f4ff; color: var(--navy); font-size: 12px; padding: 6px 14px; border-radius: 4px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .modal-feature i { color: var(--gold); }
+    .modal-specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .modal-spec-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.87rem; }
+    .modal-spec-item span:first-child { color: var(--muted); }
+    .modal-spec-item span:last-child { font-weight: 600; color: var(--navy); }
+
+    /* NO RESULTS */
+    .no-results { text-align: center; padding: 4rem 2rem; display: none; }
+    .no-results i { font-size: 3rem; color: var(--border); margin-bottom: 1rem; }
+    .no-results h3 { color: var(--muted); font-weight: 400; }
+
+    /* WHATSAPP */
+    .whatsapp-button { position: fixed; bottom: 28px; right: 28px; background: #25D366; color: white; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 200; box-shadow: 0 4px 15px rgba(37,211,102,0.4); transition: transform 0.3s; font-size: 1.6rem; text-decoration: none; }
+    .whatsapp-button:hover { transform: scale(1.1); }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: #fff; padding: 3rem 2rem 1.5rem; }
+    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-section h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 1rem; letter-spacing: 1px; }
+    .footer-section a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 0.5rem; font-size: 0.88rem; transition: color 0.3s; }
+    .footer-section a:hover { color: var(--gold2); }
+    .footer-section p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.7; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+    .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
+
+
+    /* ═══════════════════════════════════════════════════════
+       TABLET — ≤ 1100px
+       ═══════════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+        .car-card { grid-template-columns: 1fr; }
+        .car-image { height: 320px; }
+        .car-specs { grid-template-columns: repeat(4, 1fr); }
+        .footer-content { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       MOBILE FIRST — ≤ 768px  (90% dos clientes)
+       ═══════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+        /* ── Language switcher ── */
+        .language-switcher { top: 12px; right: 12px; }
+
+        /* ── Header ── */
+        header { padding: 0.85rem 1rem; }
+        .logo-line1 { font-size: 1.2rem; letter-spacing: 2px; }
+        .logo-line2 { font-size: 0.55rem; letter-spacing: 3px; }
+
+        /* ── Mobile nav menu ── */
+        nav {
+            display: none;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: #fff;
+            flex-direction: column; align-items: center; justify-content: center;
+            gap: 2rem; z-index: 150;
+        }
+        nav.open { display: flex; }
+        nav a { font-size: 1.15rem; letter-spacing: 2px; }
+        .mobile-menu-btn { display: flex; }
+
+        /* ── Hero ── */
+        .hero { height: 52vh; min-height: 320px; }
+        .hero-content { padding: 1.8rem 1rem; max-width: 100%; }
+        .hero h1 { font-size: 2rem; line-height: 1.15; margin-bottom: 0.8rem; }
+        .hero-sub { font-size: 0.8rem; line-height: 1.7; margin-bottom: 1rem; }
+        .hero-tags { gap: 5px; }
+        .hero-tag { font-size: 0.62rem; padding: 4px 9px; }
+
+        /* ── Filters bar ── */
+        /* ── Filters bar — mobile colapsável ── */
+        .filters-section {
+            position: static;
+            padding: 0;
+            background: var(--navy);
+        }
+        .filter-toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--navy);
+            border: none;
+            color: #fff;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .filter-toggle-btn .toggle-icon { font-size: 1rem; transition: transform 0.3s; }
+        .filter-toggle-btn.open .toggle-icon { transform: rotate(180deg); }
+        .filters-collapse { display: none; overflow: hidden; }
+        .filters-collapse.open { display: block; }
+        .filters-container {
+            flex-direction: column; border-radius: 0;
+            border: none; background: transparent;
+        }
+        .filter-group {
+            padding: 0.75rem 1rem;
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .filter-label { font-size: 0.58rem; letter-spacing: 2px; margin-bottom: 3px; }
+        .filter-date, .filter-select { font-size: 0.88rem; }
+        .btn-submit {
+            margin: 0.75rem 1rem;
+            width: calc(100% - 2rem);
+            padding: 0.9rem;
+            font-size: 0.78rem; letter-spacing: 1.5px;
+            border-radius: 6px;
+        }
+
+        /* ── Ticker ── */
+        .rental-ticker-item { padding: 7px 24px; gap: 8px; }
+        .rental-ticker-text { font-size: 11.5px; }
+        .rental-badge { font-size: 11px; padding: 3px 9px; }
+
+        /* ── Category bar ── */
+        .category-bar {
+            padding: 0.75rem 1rem;
+            gap: 6px;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .category-bar::-webkit-scrollbar { display: none; }
+        .cat-btn {
+            padding: 6px 14px;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            border-radius: 20px;
+        }
+
+        /* ── Results bar ── */
+        .guarantee-bar { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 0.55rem 2.5rem; background: #f0faf4; border-bottom: 1px solid #c3e6cb; font-size: 0.78rem; font-weight: 600; color: #1a6b38; letter-spacing: 0.5px; flex-wrap: wrap; }
+    .guarantee-bar span { display: flex; align-items: center; gap: 6px; }
+    .results-bar { padding: 0.6rem 1rem; gap: 4px; }
+        .results-count { font-size: 0.78rem; }
+        .sort-select { font-size: 0.78rem; padding: 3px 6px; }
+
+        /* ── Cars section ── */
+        .cars-section { padding: 16px 4%; }
+        .cars-container { gap: 1.4rem; }
+
+        /* ── Car card ── */
+        .car-card {
+            grid-template-columns: 1fr;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        /* ── Car image ── */
+        .car-image { height: 230px; border-radius: 12px 12px 0 0; }
+        .slide-prev, .slide-next { width: 36px; height: 36px; font-size: 17px; }
+        .car-type-badge {
+            font-size: 9.5px; letter-spacing: 1.5px;
+            padding: 5px 11px; bottom: 10px; left: 10px;
+            border-radius: 3px;
+        }
+        .car-badge { font-size: 9px; padding: 4px 10px; top: 12px; left: 12px; }
+        .car-favorite { width: 34px; height: 34px; font-size: 14px; top: 12px; right: 12px; }
+        .car-photo-count { font-size: 10px; padding: 3px 8px; bottom: 10px; right: 10px; }
+
+        /* ── Car info panel ── */
+        .car-info {
+            padding: 1.1rem 1rem 1.3rem;
+            border-radius: 0 0 12px 12px;
+        }
+        .car-name { font-size: 1.4rem; margin-bottom: 3px; line-height: 1.2; }
+        .car-model { font-size: 12px; margin-bottom: 12px; }
+
+        /* ── Price block ── */
+        .car-price-our-label { font-size: 10px; margin-bottom: 2px; }
+        .car-price-total { font-size: 1.6rem; }
+        .car-price-daily { font-size: 11.5px; margin-top: 2px; }
+        .car-price-competitor { font-size: 10.5px; }
+        .car-price-save { font-size: 10.5px !important; padding: 4px 10px !important; margin-top: 5px; }
+
+        /* ── Separator ── */
+        hr { margin: 12px 0; }
+
+        /* ── Specs ── */
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 14px;
+            background: #f8f9fb;
+            border-radius: 8px;
+            padding: 10px 6px;
+        }
+        .spec-item { text-align: center; }
+        .spec-item i { font-size: 14px; margin-bottom: 3px; }
+        .spec-label { font-size: 14px; font-weight: 700; }
+        .spec-value { font-size: 9px; letter-spacing: 0.5px; }
+
+        /* ── Tags ── */
+        .car-tags {
+            display: flex; flex-wrap: wrap; gap: 5px;
+            margin-bottom: 14px;
+        }
+        .car-tag { font-size: 10px; padding: 4px 9px; border-radius: 4px; }
+        .franchise-tag, .caution-tag { font-size: 10px !important; }
+
+        /* ── Buttons ── */
+        .car-info-btn {
+            font-size: 11px; padding: 9px 14px;
+            margin-bottom: 9px; width: 100%;
+            justify-content: center; border-radius: 6px;
+        }
+        .car-btn {
+            padding: 14px;
+            font-size: 12px; letter-spacing: 1.8px;
+            border-radius: 6px;
+        }
+
+        /* ── Info modal ── */
+        .flying-modal-content {
+            width: 95%; max-width: 480px;
+            margin: 16px auto; padding: 1.4rem;
+            border-radius: 12px;
+        }
+        .modal-title { font-size: 1.35rem; margin-bottom: 0.8rem; }
+        .modal-description { font-size: 0.8rem; line-height: 1.75; margin-bottom: 1rem; }
+        .modal-specs-grid { grid-template-columns: 1fr; gap: 0; }
+        .modal-spec-item { font-size: 0.82rem; padding: 8px 0; }
+        .modal-features { gap: 5px; }
+        .modal-feature { font-size: 10.5px; padding: 5px 10px; }
+
+        /* ── Footer ── */
+        .footer-content { grid-template-columns: 1fr; gap: 1.2rem; }
+        footer { padding: 1.8rem 1rem 1rem; }
+        .footer-bottom { flex-direction: column; gap: 0.4rem; text-align: center; font-size: 0.72rem; }
+
+        /* ── WhatsApp ── */
+        .whatsapp-button {
+            width: 52px; height: 52px; font-size: 1.45rem;
+            bottom: 20px; right: 14px;
+        }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       SMALL PHONES — ≤ 420px
+       ═══════════════════════════════════════════════════════ */
+    @media (max-width: 420px) {
+        .hero { height: 48vh; min-height: 290px; }
+        .hero h1 { font-size: 1.7rem; }
+        .hero-sub { display: none; }
+        .car-image { height: 200px; }
+        .car-name { font-size: 1.25rem; }
+        .car-price-total { font-size: 1.45rem; }
+        .car-specs { padding: 8px 4px; gap: 4px; }
+        .spec-label { font-size: 13px; }
+        .spec-value { font-size: 8.5px; }
+        .cars-section { padding: 12px 3%; }
+        .cars-container { gap: 1.1rem; }
+        .car-btn { padding: 13px; font-size: 11.5px; }
+    }
+
+    .franchise-tag { background: #e8f5e9 !important; color: #2e7d32 !important; font-weight: 700 !important; }
+    .caution-tag { background: #e3f2fd !important; color: #1565c0 !important; font-weight: 700 !important; }
+    .car-price-save { background: #e8f5e9 !important; color: #2e7d32 !important; font-weight: 700 !important; font-size: 12px !important; padding: 5px 14px !important; border-radius: 4px !important; display: inline-block; margin-top: 6px; }
+    .car-price-our-label { font-size: 11px; color: #1565c0; letter-spacing: 0.5px; font-weight: 700; margin-bottom: 4px; }
+    
+    </style>
+</head>
+<body>
+
+<div class="language-switcher">
+    <button class="lang-btn active" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+</div>
+
+<header>
+    <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-crown" style="color:var(--gold)"></i></span>
+        <div class="logo-text">
+            <span class="logo-line1">King Carluxe</span>
+            <span class="logo-line2">Luxury Car Rental</span>
+        </div>
+    </a>
+    <nav id="mainNav">
+        <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+        <a href="cannes.html" class="active" data-fr="Cannes" data-en="Cannes">Cannes</a>
+        <a href="monaco.html" data-fr="Monaco" data-en="Monaco">Monaco</a>
+    </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <img src="cannes.png" alt="Cannes Luxury Cars">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="hero-eyebrow" data-fr="Côte d'Azur · France" data-en="French Riviera · France">Côte d'Azur · France</span>
+        <h1 data-fr="Location de<br>Supercars à Cannes" data-en="Supercar Rental<br>in Cannes">Location de<br>Supercars à Cannes</h1>
+        <p class="hero-sub" data-fr="Lamborghini Revuelto, Ferrari 296 GTS, Rolls-Royce Spectre et plus encore sur la célèbre Croisette. Vivez le glamour de Cannes au volant des voitures les plus désirées du monde." data-en="Lamborghini Revuelto, Ferrari 296 GTS, Rolls-Royce Spectre and more on the famous Croisette. Experience the glamour of Cannes behind the wheel of the world's most desired cars.">Lamborghini Revuelto, Ferrari 296 GTS, Rolls-Royce Spectre et plus encore sur la célèbre Croisette. Vivez le glamour de Cannes au volant des voitures les plus désirées du monde.</p>
+        <div class="hero-tags"><span class="hero-tag">Lamborghini</span><span class="hero-tag">Ferrari</span><span class="hero-tag">Rolls-Royce</span><span class="hero-tag">Bentley</span><span class="hero-tag">Mercedes-Maybach</span></div>
+    </div>
+</section>
+
+<!-- Filters -->
+<div class="filters-section">
+    <button class="filter-toggle-btn" id="filterToggleBtn" aria-expanded="false">
+        <span>&#x1F4C5; Dates &amp; Lieu de remise</span>
+        <span class="toggle-icon">&#9660;</span>
+    </button>
+    <div class="filters-collapse" id="filtersCollapse">
+    <div class="filters-container">
+        <div class="filter-group">
+            <span class="filter-label" data-fr="DATE DE PRISE EN CHARGE" data-en="PICKUP DATE">DATE DE PRISE EN CHARGE</span>
+            <input type="date" class="filter-date" id="filterCheckIn">
+        </div>
+        <div class="filter-group">
+            <span class="filter-label" data-fr="DATE DE RETOUR" data-en="RETURN DATE">DATE DE RETOUR</span>
+            <input type="date" class="filter-date" id="filterCheckOut">
+        </div>
+        <div class="filter-group">
+            <span class="filter-label" data-fr="LIEU DE PRISE EN CHARGE" data-en="PICKUP LOCATION">LIEU DE PRISE EN CHARGE</span>
+            <select class="filter-select" id="filterLocation">
+                <optgroup label="── Aéroports ──" style="color:var(--gold2)">
+                    <option>Aéroport Nice Côte d'Azur (NCE)</option>
+                    <option>Aéroport Cannes Mandelieu</option>
+                    <option>Héliport de Cannes</option>
+                </optgroup>
+                <optgroup label="── Hôtels Cannes ──" style="color:var(--gold2)">
+                    <option>Hôtel Martinez — Cannes</option>
+                    <option>Hôtel Majestic Barrière — Cannes</option>
+                    <option>Hôtel Carlton — Cannes</option>
+                    <option>Hôtel JW Marriott — Cannes</option>
+                    <option>Hôtel Five Seas — Cannes</option>
+                    <option>Hôtel Mövenpick — Cannes</option>
+                </optgroup>
+                <optgroup label="── Ports & Zones ──" style="color:var(--gold2)">
+                    <option>Port de Cannes (Vieux Port)</option>
+                    <option>Port Pierre Canto — Cannes</option>
+                    <option>La Croisette — Cannes</option>
+                    <option>Palais des Festivals — Cannes</option>
+                </optgroup>
+                <optgroup label="── Autres ──" style="color:var(--gold2)">
+                    <option>Antibes — Juan-les-Pins</option>
+                    <option>Cap d'Antibes</option>
+                    <option>Mougins</option>
+                    <option>Votre Hôtel / Villa / Yacht</option>
+                </optgroup>
+            </select>
+        </div> <button class="btn-submit" id="btnSearch" data-fr="RECHERCHER" data-en="SEARCH">RECHERCHER</button>
+    </div>
+    </div>
+</div>
+
+<!-- Ticker -->
+<div class="rental-ticker">
+        <div class="rental-ticker-group">
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Lamborghini Revuelto — Festival de Cannes</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Ferrari 296 GTS — La Croisette</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Rolls-Royce Spectre — Côte d'Azur VIP</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Bentley Continental GT — Cap d'Antibes</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Rolls-Royce Ghost — Port de Cannes</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Lamborghini Revuelto — Festival de Cannes</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Ferrari 296 GTS — La Croisette</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Rolls-Royce Spectre — Côte d'Azur VIP</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Bentley Continental GT — Cap d'Antibes</span></div>
+        <div class="rental-ticker-item"><span class="rental-badge">Cannes</span><span class="rental-ticker-text">Rolls-Royce Ghost — Port de Cannes</span></div>
+    </div>
+</div>
+
+<!-- Category Bar -->
+<div class="category-bar">
+    <button class="cat-btn active" data-cat="all" data-fr="Tous" data-en="All">Tous</button>
+    <button class="cat-btn" data-cat="Hypercar" data-fr="Hypercar" data-en="Hypercar">Hypercar</button>
+    <button class="cat-btn" data-cat="Supercar" data-fr="Supercar" data-en="Supercar">Supercar</button>
+    <button class="cat-btn" data-cat="GT" data-fr="Grand Tourisme" data-en="Grand Tourer">Grand Tourisme</button>
+    <button class="cat-btn" data-cat="SUV" data-fr="SUV de Luxe" data-en="Luxury SUV">SUV de Luxe</button>
+    <button class="cat-btn" data-cat="Berline" data-fr="Berline de Luxe" data-en="Luxury Sedan">Berline de Luxe</button>
+</div>
+
+<!-- Results Bar -->
+<div class="results-bar">
+    <div class="results-count"><strong id="countDisplay">9</strong> <span data-fr="voitures disponibles à Cannes" data-en="cars available in Cannes">voitures disponibles à Cannes</span></div>
+    <div class="results-sort">
+        <span data-fr="Trier par:" data-en="Sort by:">Trier par:</span>
+        <select class="sort-select" id="sortSelect">
+            <option value="featured" data-fr="Recommandés" data-en="Featured">Recommandés</option>
+            <option value="price-asc" data-fr="Prix croissant" data-en="Price: Low to High">Prix croissant</option>
+            <option value="price-desc" data-fr="Prix décroissant" data-en="Price: High to Low">Prix décroissant</option>
+        </select>
+    </div>
+</div>
+
+<!-- Cars Section -->
+<div class="guarantee-bar"><span><i class="fas fa-shield-alt"></i> Franchise incluse sur tous les véhicules</span><span><i class="fas fa-check-circle"></i> Zéro caution</span><span><i class="fas fa-lock"></i> Assurance tous risques incluse</span></div>
+<section class="cars-section">
+    <div class="cars-container" id="carsGrid">
+
+<!-- Lamborghini Revuelto — HYPERCAR -->
+<div class="car-card" data-type="Hypercar" data-price="3700" data-seats="2">
+    <div class="car-image">
+        <img src="images/lamborghini-revuelto-1.png" class="active" alt="Lamborghini Revuelto">
+        <img src="images/lamborghini-revuelto-2.png" alt="Lamborghini Revuelto">
+        <img src="images/lamborghini-revuelto-3.png" alt="Lamborghini Revuelto">
+        <img src="images/lamborghini-revuelto-4.png" alt="Lamborghini Revuelto">
+        <div class="car-badge">HYPERCAR</div>
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">Hypercar</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Lamborghini Revuelto</div>
+        <div class="car-model">Lamborghini · V12 Hybrid 1015ch · 2024</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">3 700 €</div><div class="car-price-daily">3 700 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">1015</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">2.5s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">350</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">2</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">V12 Hybrid</span><span class="car-tag">AWD 4 moteurs</span></div>
+        <button class="car-info-btn" data-title="Lamborghini Revuelto | Cannes" data-description="Le Lamborghini Revuelto est la nouvelle hypercar de Sant'Agata Bolognese, successeur de l'Aventador. Avec son V12 hybride de 1015ch, il est la voiture la plus puissante jamais produite par Lamborghini. Sur la Croisette, son design futuriste ne passera pas inaperçu." data-features="Livraison Cannes incluse;Assurance tous risques;V12 6.5L + 3 moteurs électriques;1015ch total;AWD 4 moteurs;Mode Elettra / Ibrido / Trazione;Boîte 8 rapports;Conciergerie 24/7" data-specs="Moteur: V12 6.5L + Hybride;Puissance: 1015 ch;0-100 km/h: 2.5 s;Vitesse max: 350 km/h;Boîte: DCT 8 rapports;Transmission: AWD;Places: 2;Carrosserie: Coupé"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Lamborghini Revuelto" data-model="Lamborghini · Revuelto V12 Hybrid 1015ch · 2024" data-type="Hypercar" data-price-day="3700" data-hp="1015" data-speed="350" data-seats="2" data-img="images/lamborghini-revuelto-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Ferrari 296 GTS — SUPERCAR -->
+<div class="car-card" data-type="Supercar" data-price="2600" data-seats="2">
+    <div class="car-image">
+        <img src="images/ferrari-296-gts-1.png" class="active" alt="Ferrari 296 GTS">
+        <img src="images/ferrari-296-gts-2.png" alt="Ferrari 296 GTS">
+        <img src="images/ferrari-296-gts-3.png" alt="Ferrari 296 GTS">
+        <img src="images/ferrari-296-gts-4.png" alt="Ferrari 296 GTS">
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">Supercar</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Ferrari 296 GTS</div>
+        <div class="car-model">Ferrari · V6 Hybrid 830ch · 2024</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">2 600 €</div><div class="car-price-daily">2 600 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">830</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">2.9s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">330</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">2</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">Hybrid Spider</span><span class="car-tag">Toit rétractable</span></div>
+        <button class="car-info-btn" data-title="Ferrari 296 GTS | Cannes" data-description="La Ferrari 296 GTS combine un V6 biturbo avec un moteur électrique pour 830ch. La version GTS (Gran Turismo Spider) offre le plaisir d'un toit rétractable avec les sensations d'une vraie supercar hybride. Idéale pour parcourir la Croisette en beauté." data-features="Livraison Cannes incluse;Assurance tous risques;V6 Biturbo + Moteur électrique;830ch total;Spider toit rétractable;Mode Hybrid / Performance;Carbone Racing;Conciergerie 24/7" data-specs="Moteur: V6 Biturbo 3.0L + Hybride;Puissance: 830 ch;0-100 km/h: 2.9 s;Vitesse max: 330 km/h;Boîte: DCT 8 rapports;Transmission: RWD;Places: 2;Carrosserie: Spider"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Ferrari 296 GTS" data-model="Ferrari · 296 GTS V6 Hybrid 830ch · 2024" data-type="Supercar" data-price-day="2600" data-hp="830" data-speed="330" data-seats="2" data-img="images/ferrari-296-gts-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Lamborghini Huracán Technica — SUPERCAR -->
+<div class="car-card" data-type="Supercar" data-price="2800" data-seats="2">
+    <div class="car-image">
+        <img src="images/lamborghini-huracan-technica-1.png" class="active" alt="Lamborghini Huracán Technica">
+        <img src="images/lamborghini-huracan-technica-2.png" alt="Lamborghini Huracán Technica">
+        <img src="images/lamborghini-huracan-technica-3.png" alt="Lamborghini Huracán Technica">
+        <img src="images/lamborghini-huracan-technica-4.png" alt="Lamborghini Huracán Technica">
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">Supercar</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Lamborghini Huracán Technica</div>
+        <div class="car-model">Lamborghini · V10 5.2L Atmosphérique 640ch · 2024</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">2 800 €</div><div class="car-price-daily">2 800 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">640</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">3.2s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">325</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">2</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">V10 Atmosphérique</span><span class="car-tag">RWD pur</span></div>
+        <button class="car-info-btn" data-title="Lamborghini Huracán Technica | Cannes" data-description="La Lamborghini Huracán Technica est la version la plus engageante de la famille Huracán. Propulsion arrière uniquement, son V10 naturellement aspiré de 640ch offre une sonorité incomparable sur les routes de Cap d'Antibes." data-features="Livraison Cannes incluse;Assurance tous risques;V10 5.2L Atmosphérique 640ch;RWD Propulsion arrière;Mode Strada / Sport / Corsa;Suspension magnétique;LP 640-2 calibration;Conciergerie 24/7" data-specs="Moteur: V10 5.2L Atmosphérique;Puissance: 640 ch;0-100 km/h: 3.2 s;Vitesse max: 325 km/h;Boîte: LDF 7 rapports;Transmission: RWD;Places: 2;Carrosserie: Coupé"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Lamborghini Huracán Technica" data-model="Lamborghini · Huracán Technica 640ch · 2024" data-type="Supercar" data-price-day="2800" data-hp="640" data-speed="325" data-seats="2" data-img="images/lamborghini-huracan-technica-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Rolls-Royce Spectre — GRAND TOURISME -->
+<div class="car-card" data-type="GT" data-price="2500" data-seats="4">
+    <div class="car-image">
+        <img src="images/rolls-royce-spectre-1.png" class="active" alt="Rolls-Royce Spectre">
+        <img src="images/rolls-royce-spectre-2.png" alt="Rolls-Royce Spectre">
+        <img src="images/rolls-royce-spectre-3.png" alt="Rolls-Royce Spectre">
+        <img src="images/rolls-royce-spectre-4.png" alt="Rolls-Royce Spectre">
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">Grand Tourisme</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Rolls-Royce Spectre</div>
+        <div class="car-model">Rolls-Royce · Électrique 577ch · 2024</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">2 500 €</div><div class="car-price-daily">2 500 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">577</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">4.5s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">250</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">4</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">100% Électrique</span><span class="car-tag">Silence absolu</span></div>
+        <button class="car-info-btn" data-title="Rolls-Royce Spectre | Cannes" data-description="Le Rolls-Royce Spectre est le premier coupé électrique de la marque. Silence absolu, confort céleste et puissance instantanée — l'expérience ultime pour les rues de Cannes. Premier véhicule à moteur électrique de Rolls-Royce, il incarne le luxe de demain." data-features="Livraison Cannes incluse;Assurance tous risques;Moteur électrique 577ch;AWD Silence absolu;Autonomie 520 km;Intérieur Bespoke;Starlight Headliner;Conciergerie 24/7" data-specs="Moteur: Électrique double;Puissance: 577 ch;0-100 km/h: 4.5 s;Vitesse max: 250 km/h;Autonomie: 520 km;Transmission: AWD;Places: 4;Carrosserie: Coupé"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Rolls-Royce Spectre" data-model="Rolls-Royce · Spectre Électrique 577ch · 2024" data-type="GT" data-price-day="2500" data-hp="577" data-speed="250" data-seats="4" data-img="images/rolls-royce-spectre-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Bentley Continental GT — GRAND TOURISME -->
+<div class="car-card" data-type="GT" data-price="1900" data-seats="4">
+    <div class="car-image">
+        <img src="images/bentley-continental-gt-1.png" class="active" alt="Bentley Continental GT">
+        <img src="images/bentley-continental-gt-2.png" alt="Bentley Continental GT">
+        <img src="images/bentley-continental-gt-3.png" alt="Bentley Continental GT">
+        <img src="images/bentley-continental-gt-4.png" alt="Bentley Continental GT">
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">Grand Tourisme</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Bentley Continental GT</div>
+        <div class="car-model">Bentley · W12 6.0L Biturbo 659ch · 2025</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">1 900 €</div><div class="car-price-daily">1 900 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">659</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">3.5s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">335</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">4</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">W12 659ch</span><span class="car-tag">Confort absolu</span></div>
+        <button class="car-info-btn" data-title="Bentley Continental GT | Cannes" data-description="Le Bentley Continental GT est l'incarnation du grand tourisme britannique. Avec 659ch et 900Nm de couple, il relie Cannes à Monaco dans un silence absolu tout en étant capable de performances spectaculaires. L'intérieur en cuir et bois est une œuvre d'art." data-features="Livraison Cannes incluse;Assurance tous risques;W12 6.0L Biturbo 659ch;4 places GT de luxe;Son Naim for Bentley;Sièges massants 18 moteurs;Air Ride adaptative;Conciergerie 24/7" data-specs="Moteur: W12 Biturbo 6.0L;Puissance: 659 ch;0-100 km/h: 3.5 s;Vitesse max: 335 km/h;Boîte: DCT 8 rapports;Carburant: Essence;Places: 4;Carrosserie: Coupé"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Bentley Continental GT" data-model="Bentley · Continental GT W12 659ch · 2025" data-type="GT" data-price-day="1900" data-hp="659" data-speed="335" data-seats="4" data-img="images/bentley-continental-gt-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Rolls-Royce Cullinan — SUV DE LUXE -->
+<div class="car-card" data-type="SUV" data-price="2350" data-seats="5">
+    <div class="car-image">
+        <img src="images/rolls-royce-cullinan-1.png" class="active" alt="Rolls-Royce Cullinan">
+        <img src="images/rolls-royce-cullinan-2.png" alt="Rolls-Royce Cullinan">
+        <img src="images/rolls-royce-cullinan-3.png" alt="Rolls-Royce Cullinan">
+        <img src="images/rolls-royce-cullinan-4.png" alt="Rolls-Royce Cullinan">
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">SUV de Luxe</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Rolls-Royce Cullinan</div>
+        <div class="car-model">Rolls-Royce · V12 6.75L Biturbo 571ch · 2024</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">2 350 €</div><div class="car-price-daily">2 350 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">571</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">5.2s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">250</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">5</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">SUV Ultime</span><span class="car-tag">Tout-terrain de luxe</span></div>
+        <button class="car-info-btn" data-title="Rolls-Royce Cullinan | Cannes" data-description="Le Rolls-Royce Cullinan est le SUV le plus luxueux du monde. Son V12 biturbo de 571ch propulse ce mastodonte de 2,7 tonnes dans un silence divin. Idéal pour les familles souhaitant l'expérience Rolls-Royce avec la praticité d'un SUV." data-features="Livraison Cannes incluse;Assurance tous risques;V12 6.75L Biturbo 571ch;5 places royales;Starlight Headliner;Réfrigérateur de bord;Air Ride Magic Carpet;Conciergerie 24/7" data-specs="Moteur: V12 Biturbo 6.75L;Puissance: 571 ch;0-100 km/h: 5.2 s;Vitesse max: 250 km/h;Boîte: ZF 8 rapports;Transmission: AWD;Places: 5;Carrosserie: SUV"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Rolls-Royce Cullinan" data-model="Rolls-Royce · Cullinan V12 571ch · 2024" data-type="SUV" data-price-day="2350" data-hp="571" data-speed="250" data-seats="5" data-img="images/rolls-royce-cullinan-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Ferrari Purosangue — SUV DE LUXE -->
+<div class="car-card" data-type="SUV" data-price="2600" data-seats="4">
+    <div class="car-image">
+        <img src="images/ferrari-purosangue-1.png" class="active" alt="Ferrari Purosangue">
+        <img src="images/ferrari-purosangue-2.png" alt="Ferrari Purosangue">
+        <img src="images/ferrari-purosangue-3.png" alt="Ferrari Purosangue">
+        <img src="images/ferrari-purosangue-4.png" alt="Ferrari Purosangue">
+        <div class="car-badge">PREMIER SUV FERRARI</div>
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">SUV de Luxe</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Ferrari Purosangue</div>
+        <div class="car-model">Ferrari · V12 6.5L 725ch · 2024</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">2 600 €</div><div class="car-price-daily">2 600 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">725</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">3.3s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">310</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">4</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">V12 Atmosphérique</span><span class="car-tag">SUV Ferrari unique</span></div>
+        <button class="car-info-btn" data-title="Ferrari Purosangue | Cannes" data-description="Le Ferrari Purosangue est le premier et unique SUV Ferrari. Son V12 atmosphérique de 725ch est l'un des derniers de son espèce. 4 vraies places, portes antagonistes, et l'ADN Ferrari pur-sang. Une exclusivité absolue sur la Côte d'Azur." data-features="Livraison Cannes incluse;Assurance tous risques;V12 6.5L Atmosphérique 725ch;4 places + portes antagonistes;AWD avec différentiel actif;Mode GT / Sport / Race;Intérieur Alcantara Ferrari;Conciergerie 24/7" data-specs="Moteur: V12 6.5L Atmosphérique;Puissance: 725 ch;0-100 km/h: 3.3 s;Vitesse max: 310 km/h;Boîte: DCT 8 rapports;Transmission: AWD;Places: 4;Carrosserie: SUV"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Ferrari Purosangue" data-model="Ferrari · Purosangue V12 725ch · 2024" data-type="SUV" data-price-day="2600" data-hp="725" data-speed="310" data-seats="4" data-img="images/ferrari-purosangue-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Mercedes-Maybach S-Class — BERLINE DE LUXE -->
+<div class="car-card" data-type="Berline" data-price="1650" data-seats="4">
+    <div class="car-image">
+        <img src="images/mercedes-maybach-s-class-1.png" class="active" alt="Mercedes-Maybach S-Class">
+        <img src="images/mercedes-maybach-s-class-2.png" alt="Mercedes-Maybach S-Class">
+        <img src="images/mercedes-maybach-s-class-3.png" alt="Mercedes-Maybach S-Class">
+        <img src="images/mercedes-maybach-s-class-4.png" alt="Mercedes-Maybach S-Class">
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">Berline de Luxe</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Mercedes-Maybach S-Class</div>
+        <div class="car-model">Mercedes-Maybach · V12 6.0L Biturbo 621ch · 2025</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">1 650 €</div><div class="car-price-daily">1 650 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">621</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">4.5s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">250</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">4</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">Confort First Class</span><span class="car-tag">Sièges Chauffants/Massants</span></div>
+        <button class="car-info-btn" data-title="Mercedes-Maybach S-Class | Cannes" data-description="La Mercedes-Maybach S-Class est la référence absolue en matière de berline de luxe. Ses passagers arrière jouissent d'un espace et d'un confort dignes d'un avion privé. Chauffeur disponible sur demande pour une expérience VIP totale à Cannes." data-features="Livraison Cannes incluse;Assurance tous risques;V12 6.0L Biturbo 621ch;Sièges Executive First Class;Massage 10 zones;Burmester 3D High-End Audio;Verre Privacy;Conciergerie 24/7" data-specs="Moteur: V12 Biturbo 6.0L;Puissance: 621 ch;0-100 km/h: 4.5 s;Vitesse max: 250 km/h;Boîte: 9G-Tronic;Carburant: Essence;Places: 4;Carrosserie: Berline"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Mercedes-Maybach S-Class" data-model="Mercedes-Maybach · S-Class V12 621ch · 2025" data-type="Berline" data-price-day="1650" data-hp="621" data-speed="250" data-seats="4" data-img="images/mercedes-maybach-s-class-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<!-- Rolls-Royce Ghost — BERLINE DE LUXE -->
+<div class="car-card" data-type="Berline" data-price="2200" data-seats="4">
+    <div class="car-image">
+        <img src="images/rolls-royce-ghost-1.png" class="active" alt="Rolls-Royce Ghost">
+        <img src="images/rolls-royce-ghost-2.png" alt="Rolls-Royce Ghost">
+        <img src="images/rolls-royce-ghost-3.png" alt="Rolls-Royce Ghost">
+        <img src="images/rolls-royce-ghost-4.png" alt="Rolls-Royce Ghost">
+        <button class="slide-prev">&#10094;</button><button class="slide-next">&#10095;</button>
+        <div class="car-type-badge">Berline de Luxe</div>
+        <button class="car-favorite"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="car-info">
+        <div class="car-name">Rolls-Royce Ghost</div>
+        <div class="car-model">Rolls-Royce · V12 6.75L Biturbo 571ch · 2024</div>
+        <div><div class="car-price-our-label">King Carluxe</div><div class="car-price-total">2 200 €</div><div class="car-price-daily">2 200 € / jour</div></div>
+        <hr>
+        <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><div class="spec-label">571</div><div class="spec-value">Ch</div></div>
+            <div class="spec-item"><i class="fas fa-bolt"></i><div class="spec-label">4.8s</div><div class="spec-value">0-100</div></div>
+            <div class="spec-item"><i class="fas fa-road"></i><div class="spec-label">250</div><div class="spec-value">km/h</div></div>
+            <div class="spec-item"><i class="fas fa-users"></i><div class="spec-label">4</div><div class="spec-value">Places</div></div>
+        </div>
+        <div class="car-tags"><span class="car-tag">Assurance incluse</span><span class="car-tag">Whisper Quiet</span><span class="car-tag">Starlight Headliner</span></div>
+        <button class="car-info-btn" data-title="Rolls-Royce Ghost | Cannes" data-description="La Rolls-Royce Ghost est la berline de luxe par excellence. Son V12 biturbo développe 571ch dans un silence quasi absolu — moins de 20 décibels en cabine. Le Starlight Headliner avec 1340 étoiles en fibre optique crée une ambiance céleste. L'idéal pour arriver au Festival de Cannes." data-features="Livraison Cannes incluse;Assurance tous risques;V12 6.75L Biturbo 571ch;Starlight Headliner 1340 étoiles;Suspension Satellite Aided;Architecture All-Aluminium;Intérieur cuir Bridge of Weir;Conciergerie 24/7" data-specs="Moteur: V12 Biturbo 6.75L;Puissance: 571 ch;0-100 km/h: 4.8 s;Vitesse max: 250 km/h;Boîte: ZF 8 rapports;Transmission: AWD;Places: 4;Carrosserie: Berline"><i class="fas fa-info-circle"></i> Info</button>
+        <button class="car-btn" data-car="Rolls-Royce Ghost" data-model="Rolls-Royce · Ghost V12 571ch · 2024" data-type="Berline" data-price-day="2200" data-hp="571" data-speed="250" data-seats="4" data-img="images/rolls-royce-ghost-1.png">RÉSERVER MAINTENANT</button>
+    </div>
+</div>
+
+<div class="no-results" id="noResults">
+            <i class="fas fa-car"></i>
+            <h3 data-fr="Aucun véhicule trouvé pour ces critères" data-en="No vehicles found for these criteria">Aucun véhicule trouvé pour ces critères</h3>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="flying-modal" id="carModal">
+    <div class="flying-modal-content">
+        <button class="close" id="modalClose">&times;</button>
+        <div class="modal-title" id="modalTitle">—</div>
+        <div class="modal-description" id="modalDesc">—</div>
+        <div class="modal-section-title" data-fr="ÉQUIPEMENTS & SERVICES" data-en="EQUIPMENT & SERVICES">ÉQUIPEMENTS & SERVICES</div>
+        <div class="modal-features" id="modalFeatures"></div>
+        <div class="modal-section-title" data-fr="CARACTÉRISTIQUES TECHNIQUES" data-en="TECHNICAL SPECIFICATIONS">CARACTÉRISTIQUES TECHNIQUES</div>
+        <div class="modal-specs-grid" id="modalSpecs"></div>
+    </div>
+</div>
+
+<!-- WhatsApp -->
+<a class="whatsapp-button" href="https://wa.me/33753150620" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>King Carluxe · Cannes</h4>
+            <p data-fr="Location de voitures de luxe sur la Côte d'Azur. Ferrari, Lamborghini, Rolls-Royce et plus encore, livrés à votre hôtel." data-en="Luxury car rental on the French Riviera. Ferrari, Lamborghini, Rolls-Royce and more, delivered to your hotel.">Location de voitures de luxe sur la Côte d'Azur. Ferrari, Lamborghini, Rolls-Royce et plus encore, livrés à votre hôtel.</p>
+        </div>
+        <div class="footer-section">
+            <h4 data-fr="Destinations" data-en="Destinations">Destinations</h4>
+            <a href="cannes.html">Cannes</a>
+            <a href="monaco.html">Monaco</a>
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <a href="tel:+33753150620">+33 7 53 15 06 20</a>
+            <a href="mailto:contact@kingcarluxe.com">contact@kingcarluxe.com</a>
+        </div>
+        <div class="footer-section">
+            <h4 data-fr="Horaires" data-en="Hours">Horaires</h4>
+            <a href="#" data-fr="Lun – Ven : 9h – 19h" data-en="Mon – Fri: 9AM – 7PM">Lun – Ven : 9h – 19h</a>
+            <a href="#" data-fr="Sam/Dim : 10h – 20h" data-en="Sat/Sun: 10AM – 8PM">Sam/Dim : 10h – 20h</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 King Carluxe · Luxury Car Rental</p>
+        <div style="display:flex;gap:1.5rem"><a href="#">Mentions légales</a><a href="#">CGV</a></div>
+    </div>
+</footer>
+
+<script>
+// FILTER TOGGLE (mobile)
+const filterToggleBtn = document.getElementById('filterToggleBtn');
+const filtersCollapse = document.getElementById('filtersCollapse');
+if (filterToggleBtn && filtersCollapse) {
+    filterToggleBtn.addEventListener('click', function() {
+        const isOpen = filtersCollapse.classList.toggle('open');
+        this.classList.toggle('open', isOpen);
+        this.setAttribute('aria-expanded', isOpen);
+    });
+}
+// ── LANGUAGE ──────────────────────────────────────────────────
+let currentLang = 'fr';
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        currentLang = this.dataset.lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        applyLang(currentLang);
+    });
+});
+function applyLang(lang) {
+    document.querySelectorAll(`[data-${lang}]`).forEach(el => {
+        const val = el.getAttribute(`data-${lang}`);
+        if (!val) return;
+        const hasChildEl = Array.from(el.childNodes).some(n => n.nodeType === 1 && n.tagName !== 'BR');
+        if (hasChildEl) return;
+        el.textContent = val;
+    });
+}
+
+// ── MOBILE MENU ───────────────────────────────────────────────
+const mobileBtn = document.getElementById('mobileMenuBtn');
+const nav = document.getElementById('mainNav');
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', function() {
+        this.classList.toggle('open');
+        nav.classList.toggle('open');
+    });
+}
+
+// ── IMAGE SLIDERS ─────────────────────────────────────────────
+document.querySelectorAll('.car-card').forEach(card => {
+    const imgs = card.querySelectorAll('.car-image img');
+    if (imgs.length < 2) return;
+    let cur = 0;
+    function go(dir) {
+        imgs[cur].classList.remove('active');
+        cur = (cur + dir + imgs.length) % imgs.length;
+        imgs[cur].classList.add('active');
+    }
+    card.querySelector('.slide-prev').addEventListener('click', () => go(-1));
+    card.querySelector('.slide-next').addEventListener('click', () => go(1));
+});
+
+// ── CATEGORY FILTER ───────────────────────────────────────────
+document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const cat = this.dataset.cat;
+        let visible = 0;
+        document.querySelectorAll('.car-card').forEach(card => {
+            const show = cat === 'all' || card.dataset.type === cat;
+            card.style.display = show ? 'grid' : 'none';
+            if (show) visible++;
+        });
+        document.getElementById('countDisplay').textContent = visible;
+        document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    });
+});
+
+// ── PRICE CALCULATION ──────────────────────────────────────────
+function calcPrices() {
+    const inEl = document.getElementById('filterCheckIn');
+    const outEl = document.getElementById('filterCheckOut');
+    let days = 1;
+    if (inEl.value && outEl.value) {
+        const diff = (new Date(outEl.value) - new Date(inEl.value)) / 86400000;
+        if (diff > 0) days = diff;
+    }
+    document.querySelectorAll('.car-card').forEach(card => {
+        const btn = card.querySelector('.car-btn');
+        if (!btn) return;
+        const pDay = parseFloat(btn.dataset.priceDay) || 0;
+        const total = pDay * days;
+        const totalEl = card.querySelector('.car-price-total');
+        if (totalEl && total > 0) {
+            totalEl.textContent = total.toLocaleString('fr-FR', {style:'currency',currency:'EUR',maximumFractionDigits:0});
+        }
+    });
+}
+document.getElementById('filterCheckIn').addEventListener('change', calcPrices);
+document.getElementById('filterCheckOut').addEventListener('change', calcPrices);
+
+// Set default dates
+const minDate = '2026-07-10';
+const checkInEl = document.getElementById('filterCheckIn');
+const checkOutEl = document.getElementById('filterCheckOut');
+const filterLocationEl = document.getElementById('filterLocation');
+checkInEl.min = minDate;
+checkOutEl.min = minDate;
+
+// ─── Récupère les données du formulaire de recherche (index.html) ───
+// Priorité : paramètres d'URL > sessionStorage > valeurs par défaut
+function getIncomingSearch() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let data = {
+        debut: urlParams.get('debut') || '',
+        fin: urlParams.get('fin') || '',
+        location: urlParams.get('location') || ''
+    };
+    if (!data.debut && !data.fin && !data.location) {
+        try {
+            const stored = sessionStorage.getItem('kc_search');
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                data = { debut: parsed.debut || '', fin: parsed.fin || '', location: parsed.location || '' };
+            }
+        } catch (e) {}
+    }
+    // Mémorise (ou met à jour) pour que la sélection de véhicule conserve ces infos
+    try {
+        sessionStorage.setItem('kc_search', JSON.stringify({
+            debut: data.debut, fin: data.fin, destination: 'cannes', location: data.location
+        }));
+    } catch (e) {}
+    return data;
+}
+const incomingSearch = getIncomingSearch();
+
+if (incomingSearch.debut) {
+    checkInEl.value = incomingSearch.debut;
+} else {
+    checkInEl.value = minDate;
+}
+if (incomingSearch.fin) {
+    checkOutEl.value = incomingSearch.fin;
+} else {
+    const jul2 = new Date(checkInEl.value || minDate); jul2.setDate(jul2.getDate()+1);
+    checkOutEl.value = jul2.toISOString().split('T')[0];
+}
+checkOutEl.min = checkInEl.value;
+if (incomingSearch.location && filterLocationEl) {
+    const matchOpt = Array.from(filterLocationEl.options).find(o => o.value === incomingSearch.location || o.textContent.trim() === incomingSearch.location);
+    if (matchOpt) filterLocationEl.value = matchOpt.value;
+}
+checkInEl.addEventListener('change', function() {
+    if (this.value < minDate) this.value = minDate;
+    if (checkOutEl.value <= this.value) {
+        const d = new Date(this.value); d.setDate(d.getDate()+1);
+        checkOutEl.value = d.toISOString().split('T')[0];
+    }
+    checkOutEl.min = this.value;
+});
+calcPrices();
+
+// ── SORT ──────────────────────────────────────────────────────
+document.getElementById('sortSelect').addEventListener('change', function() {
+    const grid = document.getElementById('carsGrid');
+    const cards = [...grid.querySelectorAll('.car-card')];
+    cards.sort((a, b) => {
+        const aP = parseFloat(a.querySelector('.car-btn')?.dataset.priceDay || 0);
+        const bP = parseFloat(b.querySelector('.car-btn')?.dataset.priceDay || 0);
+        if (this.value === 'price-asc') return aP - bP;
+        if (this.value === 'price-desc') return bP - aP;
+        return 0;
+    });
+    cards.forEach(c => grid.insertBefore(c, grid.querySelector('.no-results')));
+});
+
+// ── FAVORITES ─────────────────────────────────────────────────
+document.querySelectorAll('.car-favorite').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const icon = this.querySelector('i');
+        this.classList.toggle('active');
+        icon.classList.toggle('far');
+        icon.classList.toggle('fas');
+        if (icon.classList.contains('fas')) icon.style.color = '#e74c3c';
+        else icon.style.color = '';
+    });
+});
+
+// ── MODAL ──────────────────────────────────────────────────────
+document.querySelectorAll('.car-info-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const modal = document.getElementById('carModal');
+        document.getElementById('modalTitle').textContent = this.dataset.title || '—';
+        document.getElementById('modalDesc').textContent = this.dataset.description || '';
+        const featuresEl = document.getElementById('modalFeatures');
+        featuresEl.innerHTML = '';
+        (this.dataset.features || '').split(';').forEach(f => {
+            if (f.trim()) {
+                const span = document.createElement('span');
+                span.className = 'modal-feature';
+                span.innerHTML = '<i class="fas fa-check"></i>' + f.trim();
+                featuresEl.appendChild(span);
+            }
+        });
+        const specsEl = document.getElementById('modalSpecs');
+        specsEl.innerHTML = '';
+        (this.dataset.specs || '').split(';').forEach(s => {
+            if (s.trim()) {
+                const parts = s.split(':');
+                const div = document.createElement('div');
+                div.className = 'modal-spec-item';
+                div.innerHTML = `<span>${parts[0] || ''}</span><span>${parts.slice(1).join(':').trim() || ''}</span>`;
+                specsEl.appendChild(div);
+            }
+        });
+        modal.classList.add('open');
+    });
+});
+document.getElementById('modalClose').addEventListener('click', () => {
+    document.getElementById('carModal').classList.remove('open');
+});
+document.getElementById('carModal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+});
+
+// ── BOOK BUTTON ────────────────────────────────────────────────
+document.querySelectorAll('.car-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const inEl = document.getElementById('filterCheckIn');
+        const outEl = document.getElementById('filterCheckOut');
+        const loc = document.getElementById('filterLocation');
+        let days = 1;
+        if (inEl.value && outEl.value) {
+            const diff = (new Date(outEl.value) - new Date(inEl.value)) / 86400000;
+            if (diff > 0) days = diff;
+        }
+        const pDay = parseFloat(this.dataset.priceDay) || 0;
+        const total = pDay * days;
+        const allImgs = [this.dataset.img].filter(Boolean);
+        const booking = {
+            carName: this.dataset.car,
+            carModel: this.dataset.model,
+            carType: this.dataset.type,
+            priceDay: pDay,
+            total: total,
+            days: days,
+            checkIn: inEl.value || '',
+            checkOut: outEl.value || '',
+            pickupLocation: loc ? loc.value : 'Cannes',
+            allImages: allImgs
+        };
+        try { sessionStorage.setItem('kc_booking', JSON.stringify(booking)); } catch(e) {}
+        const params = new URLSearchParams({
+            car: this.dataset.car,
+            boatModel: this.dataset.model,
+            boatType: this.dataset.type,
+            price: total,
+            priceDay: pDay,
+            days: days,
+            hp: this.dataset.hp || '',
+            speed: this.dataset.speed || '',
+            guests: this.dataset.seats || '',
+            checkIn: inEl.value || '',
+            checkOut: outEl.value || '',
+            pickupLocation: loc ? loc.value : 'Cannes',
+            carImage: this.dataset.img || ''
+        });
+        window.location.href = 'reserva.html?' + params.toString();
+    });
+});
+</script>
+</body>
+</html>
